@@ -231,10 +231,10 @@
                     <a href="#"><i class="fa fa-user fa-fw"></i> Estudiantes<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="panels-wells.html"><i class="fa fa-edit fa-fw"></i>Nuevo</a>
+                            <a href="/estudiantes/crear"><i class="fa fa-edit fa-fw"></i>Nuevo</a>
                         </li>
                         <li>
-                            <a href="buttons.html"><i class="fa fa-table fa-fw"></i> Registro</a>
+                            <a href="/estudiantes/"><i class="fa fa-table fa-fw"></i> Registro</a>
                         </li>                        
                     </ul>
                     <!-- /.nav-second-level -->

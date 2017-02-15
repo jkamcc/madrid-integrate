@@ -5,11 +5,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>  
-    <link href="css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
-    <script>
-        // rename myToken as you like
+    <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <script>        
         window.Laravel =  <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>        
@@ -37,7 +36,7 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/app.js"></script>   
+    <script src="/js/app.js"></script>   
 
 </body>
 

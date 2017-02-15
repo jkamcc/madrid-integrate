@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    $incrementing = false;
+    /*public function __construct($id) {
+    	$this->id = $id;
+    }
+    */
+
+    #$incrementing = false;
 }

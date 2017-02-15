@@ -11,6 +11,18 @@
 |
 */
 
+use App\Student;
+
 Route::get('/', function () {
     return view('index');
 });
+
+// Route::get('/estudiantes', function () {
+//     return view('students.index');
+// });
+
+Route::get('/estudiantes', 'StudentsController@index');
+
+Route::get('/estudiantes/nuevo', 'StudentsController@create');
+
+Route::get('/estudiantes/{id}', 'StudentsController@show');

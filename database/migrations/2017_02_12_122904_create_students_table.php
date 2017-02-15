@@ -13,16 +13,17 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->timestamps();            
+        Schema::create('students', function (Blueprint $table) {                        
             $table->char('id', 9)->unique();                        
             $table->enum('documento', ['DNI', 'NIE']);            
             $table->string('nombre', 35);
             $table->string('apellido1', 18);
             $table->string('apellido2', 18);            
             $table->date('fecha_nacimiento');
-            $table->enum('genero', ['M', 'F']);
-            $table->string('estado_civil', 35);
+            $table->string('lugar_nacimiento', 35);
+            $table->enum('sexo', ['M', 'F']);
+            $table->enum('estado_civil', 
+                ['soltero','casado','separado','divorciado','viudo']);
             $table->string('nacionalidad');
             $table->string('ocupacion');
             $table->string('nivel_instruccion');
@@ -31,7 +32,9 @@ class CreateStudentsTable extends Migration
             $table->string('tipo_prestacion');//TODO valores especificios
             $table->string('tiempo_parado');//TODO valores especificios
             $table->boolean('empadronamiento');
-            $table->string('lugar_empadronamiento');    
+            $table->string('lugar_empadronamiento');   
+
+            $table->timestamps(); 
         });
     }
 
