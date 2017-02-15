@@ -25,7 +25,13 @@ class CreateStudentsTable extends Migration
             $table->string('estado_civil', 35);
             $table->string('nacionalidad');
             $table->string('ocupacion');
-            $table->string('nivel_instruccion');    
+            $table->string('nivel_instruccion');
+
+            $table->boolean('prestacion');
+            $table->string('tipo_prestacion');//TODO valores especificios
+            $table->string('tiempo_parado');//TODO valores especificios
+            $table->boolean('empadronamiento');
+            $table->string('lugar_empadronamiento');    
         });
     }
 
