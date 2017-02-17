@@ -4,7 +4,8 @@
 	
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Madrid Sigue Integrando</h1>
+			<h1 class="page-header">Madrid Sigue Integrando
+			<img class="logo" src="{{{ asset('img/logo_ame.png') }}}" alt=""></h1>						
 		</div>
 	</div>
 	<div class="row">

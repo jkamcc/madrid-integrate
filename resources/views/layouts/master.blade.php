@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>  
+    <title>@yield('title')</title> 
+    <link rel="shortcut icon" href="{{{ asset('img/favicon.ico') }}}"> 
     <link href="/css/app.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/css/sb-admin-2.css" rel="stylesheet">
