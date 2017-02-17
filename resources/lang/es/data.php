@@ -3,7 +3,7 @@
 return [
 	'new_student'           => 'Nuevo Estudiante',
 	'user_id_data'			=> 'Datos Identificativos del Usuario',
-	'ID'					=> 'NIF/NIE',
+	'ID'					=> 'NIF / NIE',
 	'nombre'             	=> 'Nombre',
 	'apellido1'             => 'Primer Apellido',
 	'apellido2'             => 'Segundo Apellido',
@@ -20,6 +20,9 @@ return [
     'viudo'					=> 'Viudo',
     'nacionalidad'			=> 'Nacionalidad',
     'ocupacion'				=> 'Ocupación',
+    'documento'				=> 'Tipo de Documentación',
+    'dni'					=> 'DNI',
+    'nie'					=> 'NIE',
     'nivel_instruccion'		=> 'Nivel de Instrucción',
     'prestacion'			=> 'Prestación',
     'tipo_prestacion'		=> 'Tipo de Prestación',

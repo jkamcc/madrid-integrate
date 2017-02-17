@@ -25,7 +25,9 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('students.student');
+        $countries = $this->getCountriesFromAPI();         
+        
+        return view('students.student', compact('countries'));        
     }
 
     /**
@@ -82,5 +84,42 @@ class StudentsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function getCountriesFromAPI()
+    {
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'https://restcountries.eu/rest/v1/all');                
+
+        $countries = array();
+
+        if ($res->getStatusCode() == 200) {
+            $jsonArray = json_decode($res->getBody(), true);
+
+            foreach ($jsonArray as $jsonObject) {
+                
+                $country = new \stdClass();
+                
+                if (!empty($jsonObject['translations']['es'])) {
+                    $country->name = $jsonObject['translations']['es'];
+                } else {
+                    $country->name = $jsonObject['name'];
+                }
+
+                //obteniendo nombre del país en el locale de la aplicación
+                $locale = \Lang::locale();
+                if (!empty($jsonObject['translations'][$locale])) {
+                    $country ->value = $jsonObject['translations'][$locale];        
+                } else {
+                    $country->value = $jsonObject['name'];
+                }
+
+                array_push($countries, $country); 
+            }
+        } else {
+            throw new Exception('Unreachable REST API');
+        }
+
+        return $countries;
     }
 }

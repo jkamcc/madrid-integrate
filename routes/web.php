@@ -26,3 +26,5 @@ Route::get('/estudiantes', 'StudentsController@index');
 Route::get('/estudiantes/nuevo', 'StudentsController@create');
 
 Route::get('/estudiantes/{id}', 'StudentsController@show');
+
+Route::post('/estudiantes', 'StudentsController@store');
