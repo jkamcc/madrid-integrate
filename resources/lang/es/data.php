@@ -3,6 +3,8 @@
 return [
 	'new_student'           => 'Nuevo Estudiante',
 	'user_id_data'			=> 'Datos Identificativos del Usuario',
+    'datos_prestaciones'    => 'Datos de Prestaciones',
+    'datos_empadronamiento' => 'Datos de Empadronamiento',
 	'ID'					=> 'NIF / NIE',
 	'nombre'             	=> 'Nombre',
 	'apellido1'             => 'Primer Apellido',
@@ -29,8 +31,10 @@ return [
     'tiempo_parado'			=> 'Tiempo Parado',
     'empadronamiento'		=> 'Empadronamiento',
     'lugar_empadronamiento'	=> 'Lugar de Empadronamiento',
-
-    'seleccionar'			=> 'Seleccionar'	
+    'tiempo_empadronamiento'=> 'Tiempo de Empadronamiento',
+    'seleccionar'			=> 'Seleccionar',
+    'yes'                   => 'Si',
+    'no'                    => 'No'
 ];	
 
 ?>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+#use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use App\Student;
 
 class StudentsController extends Controller
@@ -39,6 +41,10 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
         //
+        dd(request()->all());
+
+        //Student::create([request()->all()]);
+ 
     }
 
     /**

@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    /*public function __construct($id) {
-    	$this->id = $id;
-    }
-    */
+    protected $guarded = [];
 
     #$incrementing = false;
 }

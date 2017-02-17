@@ -31,8 +31,10 @@ class CreateStudentsTable extends Migration
             $table->boolean('prestacion');
             $table->string('tipo_prestacion');//TODO valores especificios
             $table->string('tiempo_parado');//TODO valores especificios
+
             $table->boolean('empadronamiento');
-            $table->string('lugar_empadronamiento');   
+            $table->string('lugar_empadronamiento');
+            $table->string('tiempo_empadronamiento');   
 
             $table->timestamps(); 
         });
