@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-#use App\Http\Requests\Request;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 use App\Student;
 
 class StudentsController extends Controller
@@ -27,7 +28,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        $countries = $this->getCountriesFromAPI();         
+        $countries = [];#$this->getCountriesFromAPI();              
         
         return view('students.student', compact('countries'));        
     }
@@ -41,10 +42,25 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
         //
-        dd(request()->all());
+        //dd(request()->all());
 
-        //Student::create([request()->all()]);
- 
+        $this->validate($request, [
+            'id'            => 'required|alpha_num|size:9|unique:students',
+            'nombre'        => 'required|alpha_spaces|max:35',
+            'apellido1'     => 'required|alpha_spaces|max:18',
+            'apellido2'     => 'required|alpha_spaces|max:18'
+        ]);
+        
+        /*            
+        Student::create([
+            'id' => request('id'),
+            'nombre' => request('nombre'),
+            'apellido1' => request('apellido1'),
+            'apellido2' => request('apellido2')
+        ]); */
+        Student::create(request(['id', 'nombre', 'apellido1', 'apellido2']));
+
+        return redirect('/');
     }
 
     /**

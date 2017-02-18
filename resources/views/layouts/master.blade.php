@@ -6,9 +6,7 @@
 
     <title>@yield('title')</title> 
     <link rel="shortcut icon" href="{{{ asset('img/favicon.ico') }}}"> 
-    <link href="/css/app.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">    
     <script>        
         window.Laravel =  <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -37,7 +35,8 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="/js/app.js"></script>   
+    <script src="{{ mix('/js/app.js') }}"></script>
+
 
 </body>
 

@@ -7,46 +7,61 @@
 	    </div>
 	</div>
 	<div class="row">
-	    <form class="form-horizontal col-lg-10" method="POST" action="/estudiantes">
+		@if (count($errors) > 0)
+		    <div class="alert alert-danger">
+		        <ul>
+		            @foreach ($errors->all() as $error)
+		                <li>{{ $error }}</li>
+		            @endforeach
+		        </ul>
+		    </div>
+		@endif
+	    <form @submit.prevent="validateBeforeSubmit" id="create-student" class="form-horizontal col-lg-10" method="POST" action="/estudiantes">
 	    	{{ csrf_field() }}
 	    	<div class="panel panel-info">
 	  			<div class="panel-heading">@lang('data.user_id_data')</div>
 	  			<div class="panel-body">
 			        <div class="row col-lg-6">			        				       
-				        <div class="form-group">
+				        <div class="form-group" :class="{'has-error': errors.has('id') }">
 				            <label class="control-label col-md-4" for="ID">@lang('data.ID'):</label>
 				            <div class="col-md-8">
-				                <input name="id" type="text" class="form-control" id="id">
+				                <input v-validate="'required|alpha_num|min:9|max:9'" dava-vv-as="@lang('data.ID')" name="id" type="text" class="form-control" id="id" maxlength="9" value="{{ old('id') }}">
+				                <p v-if="errors.has('id')" class="text-danger">@{{ errors.first('id') }}</p>
 				            </div>
 				        </div>
-				        <div class="form-group">
+				        <div class="form-group" :class="{'has-error': errors.has('nombre')}">
 				            <label class="control-label col-md-4" for="nombre">@lang('data.nombre'):</label>
 				            <div class="col-md-8">
-				                <input type="text" class="form-control" id="nombre">
+				                <input v-validate="'required|alpha_spaces|max:35'" type="text" name="nombre" class="form-control" id="nombre" maxlength="35">
+				                <p v-if="errors.has('nombre')" class="text-danger">@{{ errors.first('nombre') }}</p>
 				            </div>
 				        </div>
-				        <div class="form-group">
+				        <div class="form-group" :class="{'has-error': errors.has('apellido1')}">
 				            <label class="control-label col-md-4" for="pwd">@lang('data.apellido1'):</label>
 				            <div class="col-md-8">
-				                <input type="text" name="apellido1" class="form-control" id="apellido1">
+				                <input v-validate="'required|alpha_spaces|max:18'" type="text" name="apellido1" class="form-control" id="apellido1" maxlength="18">
+				                <p v-if="errors.has('apellido1')" class="text-danger">@{{ errors.first('apellido1') }}</p>
 				            </div>
 				        </div>
-				        <div class="form-group">
+				        <div class="form-group" :class="{'has-error': errors.has('apellido2')}">
 				            <label class="control-label col-md-4" for="apellido2">@lang('data.apellido2'):</label>
 				            <div class="col-md-8">
-				                <input type="text" name="apellido2" class="form-control" id="apellido2">
+				                <input v-validate="'required|alpha_spaces|max:18'" type="text" name="apellido2" class="form-control" id="apellido2" maxlength="18">
+				                <p v-if="errors.has('apellido2')" class="text-danger">@{{ errors.first('apellido2') }}</p>
 				            </div>
 				        </div>
-				        <div class="form-group">
+				        <div class="form-group" :class="{'has-error': errors.has('fecha_nacimiento')}">
 				            <label class="control-label col-md-4" for="fecha_nacimiento">@lang('data.fecha_nacimiento'):</label>
 				            <div class="col-md-8">
-				                <input type="text" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento">
+				                <input v-validate="'required|date_format:DD/MM/YYYY'" type="text" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="DD/MM/YYYY" maxlength="18">
+				                <p v-if="errors.has('fecha_nacimiento')" class="text-danger">@{{ errors.first('fecha_nacimiento') }}</p>
 				            </div>
 				        </div>
-				        <div class="form-group">
+				        <div class="form-group" :class="{'has-error': errors.has('lugar_nacimiento')}">
 				            <label class="control-label col-md-4" for="lugar_nacimiento">@lang('data.lugar_nacimiento'):</label>
 				            <div class="col-md-8">
-				                <input type="text" name="lugar_nacimiento" class="form-control" id="lugar_nacimiento">
+				                <input v-validate="'required|max:35'" type="text" name="lugar_nacimiento" class="form-control" id="lugar_nacimiento" maxlength="35">
+				                <p v-if="errors.has('lugar_nacimiento')" class="text-danger">@{{ errors.first('lugar_nacimiento') }}</p>
 				            </div>
 				        </div>
 			        </div>			        
@@ -54,14 +69,15 @@
 				        <div class="form-group">
 				            <label class="control-label col-md-4" for="estado_civil">@lang('data.estado_civil'):</label>
 				            <div class="col-md-8">
-				                <select name="estado_civil" class="form-control">
+				                <select v-validate="'required'" name="estado_civil" class="form-control">
 									<option selected>@lang('data.seleccionar')</option>
 									<option value="soltero">@lang('data.soltero')</option>
 									<option value="casado">@lang('data.casado')</option>
 									<option value="separado">@lang('data.separado')</option>
 									<option value="divorciado">@lang('data.divorciado')</option>
 									<option value="viudo">@lang('data.viudo')</option>
-								</select>			                
+								</select>
+								<p v-if="errors.has('lugar_nacimiento')" class="text-danger">@{{ errors.first('estado_civil') }}</p>                
 				            </div>
 				        </div>
 				        <div class="form-group">	

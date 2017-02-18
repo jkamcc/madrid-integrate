@@ -13,4 +13,9 @@ const { mix } = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
-   .less('resources/assets/less/sb-admin-2.less', 'public/css');
+   .less('resources/assets/less/sb-admin-2.less', 'public/css')
+   .combine(['public/css/app.css', 'public/css/sb-admin-2.css'], 'public/css/app.css');
+
+if (mix.config.inProduction) {
+    mix.version();
+}   

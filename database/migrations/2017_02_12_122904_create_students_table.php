@@ -15,26 +15,26 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {                        
             $table->char('id', 9)->unique();                        
-            $table->enum('documento', ['DNI', 'NIE']);            
+            //$table->enum('documento', ['DNI', 'NIE']);            
             $table->string('nombre', 35);
             $table->string('apellido1', 18);
             $table->string('apellido2', 18);            
-            $table->date('fecha_nacimiento');
-            $table->string('lugar_nacimiento', 35);
-            $table->enum('sexo', ['M', 'F']);
-            $table->enum('estado_civil', 
-                ['soltero','casado','separado','divorciado','viudo']);
-            $table->string('nacionalidad');
-            $table->string('ocupacion');
-            $table->string('nivel_instruccion');
+            // $table->date('fecha_nacimiento');
+            // $table->string('lugar_nacimiento', 35);
+            // $table->enum('sexo', ['M', 'F']);
+            // $table->enum('estado_civil', 
+            //     ['soltero','casado','separado','divorciado','viudo']);
+            // $table->string('nacionalidad');
+            // $table->string('ocupacion');
+            // $table->string('nivel_instruccion');
 
-            $table->boolean('prestacion');
-            $table->string('tipo_prestacion');//TODO valores especificios
-            $table->string('tiempo_parado');//TODO valores especificios
+            // $table->boolean('prestacion');
+            // $table->string('tipo_prestacion');//TODO valores especificios
+            // $table->string('tiempo_parado');//TODO valores especificios
 
-            $table->boolean('empadronamiento');
-            $table->string('lugar_empadronamiento');
-            $table->string('tiempo_empadronamiento');   
+            // $table->boolean('empadronamiento');
+            // $table->string('lugar_empadronamiento');
+            // $table->string('tiempo_empadronamiento');   
 
             $table->timestamps(); 
         });
