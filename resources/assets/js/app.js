@@ -29,21 +29,3 @@ Validator.updateDictionary({
 });
 
 Vue.use(VeeValidate, {locale: 'es'});
-
-const app = new Vue({
-    el: 'form#create-student',
-    methods: {
-    	validateBeforeSubmit(e) {    		
-    		this.$validator.validateAll().then(success => {
-                console.info(e);
-                if (! success) {
-                    // handle error
-                    return;
-                }
-                e.currentTarget.submit();
-            });
-    	}
-    }    
-});
-
-

@@ -15,9 +15,7 @@
     "lodash": "^4.17.4",
     "metismenu": "^2.6.2",
     "moment": "^2.17.1",
+    "vee-validate": "^2.0.0-beta.23",
     "vue": "^2.1.10"
-  },
-  "dependencies": {
-    "metismenu": "^2.6.2"
   }
 }

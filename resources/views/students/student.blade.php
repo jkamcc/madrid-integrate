@@ -8,13 +8,11 @@
 	</div>
 	<div class="row">
 		@if (count($errors) > 0)
-		    <div class="alert alert-danger">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
+			<div class="col-lg-10">
+			    <div class="alert alert-danger">
+			    	<p>@lang('data.error_crear_estudiante')</p>		        
+			    </div>				
+			</div>
 		@endif
 	    <form @submit.prevent="validateBeforeSubmit" id="create-student" class="form-horizontal col-lg-10" method="POST" action="/estudiantes">
 	    	{{ csrf_field() }}
@@ -25,43 +23,49 @@
 				        <div class="form-group" :class="{'has-error': errors.has('id') }">
 				            <label class="control-label col-md-4" for="ID">@lang('data.ID'):</label>
 				            <div class="col-md-8">
-				                <input v-validate="'required|alpha_num|min:9|max:9'" dava-vv-as="@lang('data.ID')" name="id" type="text" class="form-control" id="id" maxlength="9" value="{{ old('id') }}">
-				                <p v-if="errors.has('id')" class="text-danger">@{{ errors.first('id') }}</p>
+				                <input v-validate="'required|alpha_num|min:9|max:9'" dava-vv-as="@lang('data.ID')" name="id" type="text" class="form-control" id="id" maxlength="9" @focus.once="hideError" value="{{ old('id') }}">
+				                <p v-if="formErrors.id" class="text-danger">{{ $errors->first('id') }}</p>
+				                <p v-else-if="errors.has('id')" class="text-danger">@{{ errors.first('id') }}</p>
 				            </div>
 				        </div>
 				        <div class="form-group" :class="{'has-error': errors.has('nombre')}">
 				            <label class="control-label col-md-4" for="nombre">@lang('data.nombre'):</label>
 				            <div class="col-md-8">
-				                <input v-validate="'required|alpha_spaces|max:35'" type="text" name="nombre" class="form-control" id="nombre" maxlength="35">
-				                <p v-if="errors.has('nombre')" class="text-danger">@{{ errors.first('nombre') }}</p>
+				                <input v-validate="'required|alpha_spaces|max:35'" type="text" name="nombre" class="form-control" id="nombre" maxlength="35" @focus.once="hideError" value="{{ old('nombre') }}">
+				                <p v-if="formErrors.nombre" class="text-danger">{{ $errors->first('nombre') }}</p>
+				                <p v-else-if="errors.has('nombre')" class="text-danger">@{{ errors.first('nombre') }}</p>
 				            </div>
 				        </div>
 				        <div class="form-group" :class="{'has-error': errors.has('apellido1')}">
 				            <label class="control-label col-md-4" for="pwd">@lang('data.apellido1'):</label>
 				            <div class="col-md-8">
-				                <input v-validate="'required|alpha_spaces|max:18'" type="text" name="apellido1" class="form-control" id="apellido1" maxlength="18">
-				                <p v-if="errors.has('apellido1')" class="text-danger">@{{ errors.first('apellido1') }}</p>
+				                <input v-validate="'required|alpha_spaces|max:18'" type="text" name="apellido1" class="form-control" id="apellido1" maxlength="18" @focus.once="hideError" value="{{ old('apellido1') }}">
+				                <p v-if="formErrors.apellido1" class="text-danger">{{ $errors->first('apellido1') }}</p>
+				                <p v-else-if="errors.has('apellido1')" class="text-danger">@{{ errors.first('apellido1') }}</p>
 				            </div>
 				        </div>
 				        <div class="form-group" :class="{'has-error': errors.has('apellido2')}">
 				            <label class="control-label col-md-4" for="apellido2">@lang('data.apellido2'):</label>
 				            <div class="col-md-8">
-				                <input v-validate="'required|alpha_spaces|max:18'" type="text" name="apellido2" class="form-control" id="apellido2" maxlength="18">
-				                <p v-if="errors.has('apellido2')" class="text-danger">@{{ errors.first('apellido2') }}</p>
+				                <input v-validate="'required|alpha_spaces|max:18'" type="text" name="apellido2" class="form-control" id="apellido2" maxlength="18" @focus.once="hideError" value="{{ old('apellido2') }}">
+				                <p v-if="formErrors.apellido2" class="text-danger">{{ $errors->first('apellido2') }}</p>
+				                <p v-else-if="errors.has('apellido2')" class="text-danger">@{{ errors.first('apellido2') }}</p>
 				            </div>
 				        </div>
 				        <div class="form-group" :class="{'has-error': errors.has('fecha_nacimiento')}">
 				            <label class="control-label col-md-4" for="fecha_nacimiento">@lang('data.fecha_nacimiento'):</label>
 				            <div class="col-md-8">
-				                <input v-validate="'required|date_format:DD/MM/YYYY'" type="text" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="DD/MM/YYYY" maxlength="18">
-				                <p v-if="errors.has('fecha_nacimiento')" class="text-danger">@{{ errors.first('fecha_nacimiento') }}</p>
+				                <input v-validate="'required|date_format:DD/MM/YYYY'" type="text" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="DD/MM/YYYY" maxlength="18" @focus.once="hideError" value="{{ old('fecha_nacimiento') }}">
+				                <p v-if="formErrors.fecha_nacimiento" class="text-danger">{{ $errors->first('fecha_nacimiento') }}
+				                <p v-else-if="errors.has('fecha_nacimiento')" class="text-danger">@{{ errors.first('fecha_nacimiento') }}</p>
 				            </div>
 				        </div>
 				        <div class="form-group" :class="{'has-error': errors.has('lugar_nacimiento')}">
 				            <label class="control-label col-md-4" for="lugar_nacimiento">@lang('data.lugar_nacimiento'):</label>
 				            <div class="col-md-8">
-				                <input v-validate="'required|max:35'" type="text" name="lugar_nacimiento" class="form-control" id="lugar_nacimiento" maxlength="35">
-				                <p v-if="errors.has('lugar_nacimiento')" class="text-danger">@{{ errors.first('lugar_nacimiento') }}</p>
+				                <input v-validate="'required|max:35'" type="text" name="lugar_nacimiento" class="form-control" id="lugar_nacimiento" maxlength="35" @focus.once="hideError" value="{{ old('lugar_nacimiento') }}">
+				                <p v-if="formErrors.lugar_nacimiento" class="text-danger">{{ $errors->first('lugar_nacimiento') }}
+				                <p v-else-if="errors.has('lugar_nacimiento')" class="text-danger">@{{ errors.first('lugar_nacimiento') }}</p>
 				            </div>
 				        </div>
 			        </div>			        
@@ -71,13 +75,24 @@
 				            <div class="col-md-8">
 				                <select v-validate="'required'" name="estado_civil" class="form-control">
 									<option selected>@lang('data.seleccionar')</option>
-									<option value="soltero">@lang('data.soltero')</option>
-									<option value="casado">@lang('data.casado')</option>
-									<option value="separado">@lang('data.separado')</option>
-									<option value="divorciado">@lang('data.divorciado')</option>
-									<option value="viudo">@lang('data.viudo')</option>
+									<option value="soltero" {{ old('estado_civil') == 'soltero'? 'selected' : ''}}>
+										@lang('data.soltero')
+									</option>
+									<option value="casado" {{ old('estado_civil') == 'casado'? 'selected' : ''}}>
+										@lang('data.casado')
+									</option>
+									<option value="separado" {{ old('estado_civil') == 'separado'? 'selected' : ''}}>
+										@lang('data.separado')
+									</option>
+									<option value="divorciado" {{ old('estado_civil') == 'divorciado'? 'selected' : ''}}>
+										@lang('data.divorciado')
+									</option>
+									<option value="viudo" {{ old('estado_civil') == 'viudo'? 'selected' : ''}}>
+										@lang('data.viudo')
+									</option>
 								</select>
-								<p v-if="errors.has('lugar_nacimiento')" class="text-danger">@{{ errors.first('estado_civil') }}</p>                
+								<p v-if="formErrors.lugar_nacimiento" class="text-danger">{{ $errors->first('estado_civil') }}</p>
+								<p v-else-if="errors.has('lugar_nacimiento')" class="text-danger">@{{ errors.first('estado_civil') }}</p>                
 				            </div>
 				        </div>
 				        <div class="form-group">	
@@ -194,5 +209,38 @@
 	            </div>
 	        </div>
 	    </form>
-	</div>
+	</div>	
+@endsection
+
+@section ('scripts')
+<script>
+	$(document).ready(function() {
+		window.app = new Vue({
+		    el: 'form#create-student',
+		    methods: {
+		    	validateBeforeSubmit(e) {    		
+		    		this.$validator.validateAll().then(success => {
+		                console.info(e);
+		                if (! success) {
+		                    // handle error
+		                    return;
+		                }
+		                e.currentTarget.submit();
+		            });
+		    	},
+		    	hideError: function(e) {
+					this.formErrors[e.currentTarget.id] = false;
+				}
+		    },
+	    	data: {		    	
+	    		'formErrors': {
+	    			@foreach($errors->keys() as $errorKey)
+						"{{ $errorKey }}": true ,
+					@endforeach
+	    		}		    		
+	    	}
+
+		});
+	});
+</script>
 @endsection

@@ -34,7 +34,8 @@ return [
     'tiempo_empadronamiento'=> 'Tiempo de Empadronamiento',
     'seleccionar'			=> 'Seleccionar',
     'yes'                   => 'Si',
-    'no'                    => 'No'
+    'no'                    => 'No',
+    'error_crear_estudiante'=> 'El estudiante no se ha podido crear.'
 ];	
 
 ?>
