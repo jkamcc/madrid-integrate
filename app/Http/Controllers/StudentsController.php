@@ -28,7 +28,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        $countries = [];#$this->getCountriesFromAPI();              
+        $countries = $this->getCountriesFromAPI();
         
         return view('students.student', compact('countries'));        
     }

@@ -17,7 +17,7 @@
 	    <form @submit.prevent="validateBeforeSubmit" id="create-student" class="form-horizontal col-lg-10" method="POST" action="/estudiantes">
 	    	{{ csrf_field() }}
 	    	<div class="panel panel-info">
-	  			<div class="panel-heading">@lang('data.user_id_data')</div>
+	  			<div class="panel-heading">1.&nbsp;@lang('data.user_id_data')</div>
 	  			<div class="panel-body">
 			        <div class="row col-lg-6">			        				       
 				        <div class="form-group" :class="{'has-error': errors.has('id') }">
@@ -133,7 +133,7 @@
 	  			</div>
 			</div>
 			<div class="panel panel-info col-lg-5">
-				<div class="panel-heading row">@lang('data.datos_prestaciones')</div>
+				<div class="panel-heading row">2.&nbsp;@lang('data.datos_prestaciones')</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="form-group">	
@@ -174,7 +174,7 @@
 				</div>
 			</div>
 			<div class="panel panel-info col-lg-6 col-lg-offset-1">
-				<div class="panel-heading row">@lang('data.datos_empadronamiento')</div>
+				<div class="panel-heading row">3.&nbsp;@lang('data.datos_empadronamiento')</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="form-group">	
@@ -198,6 +198,30 @@
 				            <label class="control-label col-md-4" for="ID">@lang('data.tiempo_empadronamiento'):</label>
 				            <div class="col-md-8">
 				                <input name="tiempo_empadronamiento" type="text" class="form-control" id="id">
+				            </div>
+				        </div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-info col-lg-12">
+				<div class="panel-heading row">4.&nbsp;@lang('data.tipo_insercion_laboral')</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group">
+							<label class="control-label col-md-4">@lang('data.interes_emprendimiento')</label>
+							<div class="col-md-8">
+								<label class="radio-inline control-label">
+								    <input type="radio" name="interes_emprendimiento" class="" value="true">@lang('data.yes')
+								</label>
+								<label class="radio-inline control-label">
+								    <input type="radio" name="interes_emprendimiento" class="" value="false">@lang('data.no')
+								</label>													
+							</div>		
+						</div>
+						<div class="form-group">
+				            <label class="control-label col-md-4" for="trabajar_cuenta_ajena_propia">@lang('data.trabajar_cuenta_ajena_propia'):</label>
+				            <div class="col-md-8">
+				                <input type="text" name="trabajar_cuenta_ajena_propia" class="form-control" id="trabajar_cuenta_ajena_propia">
 				            </div>
 				        </div>
 					</div>
