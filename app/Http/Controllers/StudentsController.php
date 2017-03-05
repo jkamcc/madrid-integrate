@@ -16,9 +16,9 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        //$students = Student::all();
+        $students = Student::all();
 
-        return view('students.index');
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -60,7 +60,7 @@ class StudentsController extends Controller
         ]); */
         Student::create(request(['id', 'nombre', 'apellido1', 'apellido2']));
 
-        return redirect('/');
+        return redirect('/');//todo change to students view
     }
 
     /**

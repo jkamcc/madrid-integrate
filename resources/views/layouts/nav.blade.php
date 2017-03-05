@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Administración</a>
+        <a class="navbar-brand" href="index.html">Administración MSE</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -268,19 +268,7 @@
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="blank.html">Blank Page</a>
-                        </li>
-                        <li>
-                            <a href="login.html">Login Page</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
+                </li>   
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

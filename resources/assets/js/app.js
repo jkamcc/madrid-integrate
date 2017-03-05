@@ -3,12 +3,17 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-require('./bootstrap');
-window.metisMenu = require('metisMenu');
 
+/* local packages */
+require('./bootstrap');
+import {messages, dt_es} from './es';
+
+/* imported packages */
+window.metisMenu = require('metisMenu');
 window.moment = require('moment');
-import messages from './es';
 import VeeValidate, { Validator } from 'vee-validate';
+import dt from 'datatables.net';
+import dbs from 'datatables.net-bs';
 
 require('./sb-admin-2');
 
@@ -28,4 +33,17 @@ Validator.updateDictionary({
     }
 });
 
-Vue.use(VeeValidate, {locale: 'es'});
+var dataTableLang = {
+	es: dt_es
+}
+
+
+$(document).ready(function() {
+	var lang = $('html').attr('lang');
+
+	Vue.use(VeeValidate, {locale: lang});
+
+	$('#students-table').DataTable({
+		"language": dataTableLang[lang]
+	});
+});
