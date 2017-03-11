@@ -60,7 +60,7 @@ class StudentsController extends Controller
         ]); */
         Student::create(request(['id', 'nombre', 'apellido1', 'apellido2']));
 
-        return redirect('/');//todo change to students view
+        return redirect()->action('StudentsController@index');
     }
 
     /**
