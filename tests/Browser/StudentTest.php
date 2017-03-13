@@ -3,7 +3,6 @@
 namespace Tests\Browser;
 
 use App\Student;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\DuskTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -15,16 +14,13 @@ class StudentTest extends DuskTestCase
 
     /**
      * A Dusk test example.
-     *
      * @return void
-     */
+    */
     public function testCreateStudent()
     {
 
         $student = factory(Student::class)->make();
-        echo $this->id;
-        $student->id = $this->id;
-        print_r('student_id:'.$student->id);
+        print_r('\nstudent:'.$student);
         $this->browse(function ($browser) use ($student) {
             $browser->visit('/estudiantes/nuevo')
                     ->assertSee('Nuevo Estudiante')
@@ -33,31 +29,39 @@ class StudentTest extends DuskTestCase
                     ->type('apellido1', $student->apellido1)
                     ->type('apellido2', $student->apellido2)
                     ->type('fecha_nacimiento', '12/12/1992')
-                    ->type('lugar_nacimiento', 'test')
+                    ->type('lugar_nacimiento', $student->lugar_nacimiento)
+                    ->select('estado_civil', $student->estado_civil)
+                    ->radio('sexo', $student->sexo)
                     ->press('Guardar')
-                    ->assertPathIs('/estudiantes');
+                    ->assertPathIs('/estudiantes')
+                    ->assertDontSee('Whoops, looks like something went wrong.');
         });
     }
 
-    /**
-     * @param Student $student
-     * @return array
-     */
-    private function typeValidData(Student $student)
-    {
-        $datosEstudiante = [
-            'id'=> 'A12345678',
-            'nombre'=> $student->nombre,
-            'apellido1'=> $student->apellido1,
-            'apellido2'=> $student->apellido2,
-            'fecha_nacimiento'=> '12/12,1992',
-            'lugar_nacimiento'=> 'test'
-        ];
 
-        foreach ($datosEstudiante as $datoEstudiante) {
+//    public function vaalidarMensajesErrorInputs()
+//    {
+//        echo "\ntestValidarErroresInputs";
+//        $inputs = $this->getInputs();
+//        $this->browse(function ($browser) use($inputs) {
+//           $browser->visit('/estudiantes/nuevo')
+//               ->assertSee('Nuevo Estudiante');
+//
+//           foreach ($inputs as $input) {
+//               $browser->clear($input);
+//           }
+//
+//           $browser->press('Guardar');
+//
+//           /* esperando textos de error*/
+//           foreach ($inputs as $input) {
+//               $browser->waitFor('#'.$input.'+.text-danger');
+//           }
+//        });
+//    }
 
-        }
-
-        return $datosEstudiante;
+    private function getInputs() {
+        return ['id', 'nombre', 'apellido1', 'apellido2', 'fecha_nacimiento', 'lugar_nacimiento'];
     }
+
 }

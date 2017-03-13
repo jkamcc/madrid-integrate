@@ -11,8 +11,10 @@
 |
 */
 
+namespace App;
+
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (\Faker\Generator $faker) {
     static $password;
 
     return [
@@ -24,12 +26,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Student::class, function (Faker\Generator $faker) {
+$factory->define(Student::class, function (\Faker\Generator $faker) {
 
     return [
-        'nombre' => $faker->name,
+        'nombre' => $faker->firstName,
         'apellido1' => $faker->lastName,
         'apellido2' => $faker->lastName,
-        ''
+        'fecha_nacimiento' => $faker->date($format='d/m/Y'),
+        'lugar_nacimiento' => $faker->city,
+        'sexo' => $faker->randomElement(Student::getValoresSexo()),
+        'estado_civil' => $faker->randomElement(Student::getValoresEstadoCivil()),
     ];
 });

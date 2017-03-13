@@ -1,5 +1,6 @@
 <?php
 
+use App\Student;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,11 +20,11 @@ class CreateStudentsTable extends Migration
             $table->string('nombre', 35);
             $table->string('apellido1', 18);
             $table->string('apellido2', 18);            
-            // $table->date('fecha_nacimiento');
-            // $table->string('lugar_nacimiento', 35);
-            // $table->enum('sexo', ['M', 'F']);
-            // $table->enum('estado_civil', 
-            //     ['soltero','casado','separado','divorciado','viudo']);
+            $table->date('fecha_nacimiento');
+            $table->string('lugar_nacimiento', 35);
+            $table->enum('sexo', Student::getValoresSexo());
+            $table->enum('estado_civil',
+                 Student::getValoresEstadoCivil());
             // $table->string('nacionalidad');
             // $table->string('ocupacion');
             // $table->string('nivel_instruccion');

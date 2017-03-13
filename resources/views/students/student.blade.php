@@ -70,10 +70,10 @@
 				        </div>
 			        </div>			        
 			        <div class="row col-lg-6">
-				        <div class="form-group">
+				        <div class="form-group" :class="{'has-error': errors.has('sexo')}">
 				            <label class="control-label col-md-4" for="estado_civil">@lang('data.estado_civil'):</label>
 				            <div class="col-md-8">
-				                <select v-validate="'required'" name="estado_civil" class="form-control">
+				                <select v-validate="'required'" id="estado_civil" name="estado_civil" class="form-control">
 									<option selected>@lang('data.seleccionar')</option>
 									<option value="soltero" {{ old('estado_civil') == 'soltero'? 'selected' : ''}}>
 										@lang('data.soltero')
@@ -95,15 +95,17 @@
 								<p v-else-if="errors.has('lugar_nacimiento')" class="text-danger">@{{ errors.first('estado_civil') }}</p>                
 				            </div>
 				        </div>
-				        <div class="form-group">	
+				        <div class="form-group" :class="{'has-error': errors.has('sexo')}">	
 							<label class="control-label col-md-4">@lang('data.sexo')</label>
 							<div class="col-md-8">
 								<label class="radio-inline control-label">
-								    <input type="radio" name="sexo" value="M" class="">@lang('data.masculino')
+								    <input type="radio" v-validate="'required'" name="sexo" value="M" class="">@lang('data.masculino')
 								</label>
 								<label class="radio-inline control-label">
 								    <input type="radio" name="sexo" value="F" class="">@lang('data.femenino')
-								</label>													
+								</label>
+								<p v-if="formErrors.sexo" class="text-danger">{{ $errors->first('sexo') }}
+				                <p v-else-if="errors.has('sexo')" class="text-danger">@{{ errors.first('sexo') }}</p>													
 							</div>					
 						</div>
 						<div class="form-group">
