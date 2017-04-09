@@ -36,5 +36,8 @@ $factory->define(Student::class, function (\Faker\Generator $faker) {
         'lugar_nacimiento' => $faker->city,
         'sexo' => $faker->randomElement(Student::getValoresSexo()),
         'estado_civil' => $faker->randomElement(Student::getValoresEstadoCivil()),
+        'nivel_instruccion' => $faker->text(255),
+        'ocupacion' => $faker->jobTitle(),
+        'tipo_documentacion' => $faker->randomElement(Student::getTipoDocumentacion())
     ];
 });

@@ -15,8 +15,8 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {                        
-            $table->char('id', 9)->unique();                        
-            //$table->enum('documento', ['DNI', 'NIE']);            
+            
+            $table->char('id', 9)->unique();                                 
             $table->string('nombre', 35);
             $table->string('apellido1', 18);
             $table->string('apellido2', 18);            
@@ -26,10 +26,11 @@ class CreateStudentsTable extends Migration
             $table->enum('estado_civil',
                  Student::getValoresEstadoCivil());
             // $table->string('nacionalidad');
-            // $table->string('ocupacion');
-            // $table->string('nivel_instruccion');
+            $table->string('nivel_instruccion');
+            $table->string('ocupacion', 35);
 
-            // $table->boolean('prestacion');
+            $table->enum('tipo_documentacion', Student::getTipoDocumentacion());
+            //$table->boolean('prestacion');
             // $table->string('tipo_prestacion');//TODO valores especificios
             // $table->string('tiempo_parado');//TODO valores especificios
 

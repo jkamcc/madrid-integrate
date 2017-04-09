@@ -70,11 +70,11 @@
 				        </div>
 			        </div>			        
 			        <div class="row col-lg-6">
-				        <div class="form-group" :class="{'has-error': errors.has('sexo')}">
+				        <div class="form-group" :class="{'has-error': errors.has('estado_civil')}">
 				            <label class="control-label col-md-4" for="estado_civil">@lang('data.estado_civil'):</label>
 				            <div class="col-md-8">
 				                <select v-validate="'required'" id="estado_civil" name="estado_civil" class="form-control">
-									<option selected>@lang('data.seleccionar')</option>
+									<option value="" selected>@lang('data.seleccionar')</option>
 									<option value="soltero" {{ old('estado_civil') == 'soltero'? 'selected' : ''}}>
 										@lang('data.soltero')
 									</option>
@@ -99,36 +99,42 @@
 							<label class="control-label col-md-4">@lang('data.sexo')</label>
 							<div class="col-md-8">
 								<label class="radio-inline control-label">
-								    <input type="radio" v-validate="'required'" name="sexo" value="M" class="">@lang('data.masculino')
+								    <input type="radio" v-validate="'required'" name="sexo" value="M" class="" {{ old('sexo') == 'M'? 'checked' : ''}}>@lang('data.masculino')
 								</label>
 								<label class="radio-inline control-label">
-								    <input type="radio" name="sexo" value="F" class="">@lang('data.femenino')
+								    <input type="radio" name="sexo" value="F" class="" {{ old('sexo') == 'F'? 'checked' : ''}}>@lang('data.femenino')
 								</label>
 								<p v-if="formErrors.sexo" class="text-danger">{{ $errors->first('sexo') }}
 				                <p v-else-if="errors.has('sexo')" class="text-danger">@{{ errors.first('sexo') }}</p>													
 							</div>					
 						</div>
-						<div class="form-group">
+						<div class="form-group" :class="{'has-error': errors.has('nacionalidad')}">
 				            <label class="control-label col-md-4" for="nacionalidad">@lang('data.nacionalidad'):</label>
 				            <div class="col-md-8">
-				                <select name="nacionalidad" class="form-control">
-									<option selected>@lang('data.seleccionar')</option>
+				                <select v-validate="'required'" name="nacionalidad" class="form-control">
+									<option value="" selected>@lang('data.seleccionar')</option>
 									@foreach ($countries as $country)
-										<option value="{{ $country->name }}">{{ $country->value }}</option>
+										<option {{ old('nacionalidad') == $country->name? 'selected' : ''}} value="{{ $country->name }}">{{ $country->value }}</option>
 									@endforeach
-								</select>			                
+								</select>
+								<p v-if="formErrors.nacionalidad" class="text-danger">{{ $errors->first('nacionalidad') }}
+				                <p v-else-if="errors.has('nacionalidad')" class="text-danger">@{{ errors.first('nacionalidad') }}</p>
 				            </div>
 				        </div>
-				        <div class="form-group">
+				        <div class="form-group" :class="{'has-error': errors.has('nivel_instruccion')}">
 				            <label class="control-label col-md-4" for="nivel_instruccion">@lang('data.nivel_instruccion'):</label>
 				            <div class="col-md-8">
-				                <input type="text" name="nivel_instruccion" class="form-control" id="nivel_instruccion">
+				                <input v-validate="'required|max:255'" type="text" name="nivel_instruccion" class="form-control" id="nivel_instruccion" value="{{ old('nivel_instruccion') }}">
+				                <p v-if="formErrors.nivel_instruccion" class="text-danger">{{ $errors->first('nivel_instruccion') }}
+				                <p v-else-if="errors.has('nivel_instruccion')" class="text-danger">@{{ errors.first('nivel_instruccion') }}</p>
 				            </div>
 				        </div>
-				        <div class="form-group">
+				        <div class="form-group" :class="{'has-error': errors.has('ocupacion')}">
 				            <label class="control-label col-md-4" for="ocupacion">@lang('data.ocupacion'):</label>
 				            <div class="col-md-8">
-				                <input type="text" name="ocupacion" class="form-control" id="ocupacion">
+				                <input v-validate="'required|alpha_spaces|max:35'" type="text" name="ocupacion" class="form-control" id="ocupacion" maxlength="35" value="{{ old('ocupacion') }}">
+				                <p v-if="formErrors.ocupacion" class="text-danger">{{ $errors->first('ocupacion') }}
+				                <p v-else-if="errors.has('ocupacion')" class="text-danger">@{{ errors.first('ocupacion') }}</p>
 				            </div>
 				        </div>
 			        </div>
@@ -138,15 +144,17 @@
 				<div class="panel-heading row">2.&nbsp;@lang('data.datos_prestaciones')</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="form-group">	
-							<div class="col-md-4"><label class="control-label">@lang('data.documento')</label></div>
+						<div class="form-group" :class="{'has-error': errors.has('tipo_documentacion')}">	
+							<div class="col-md-4"><label class="control-label">@lang('data.tipo_documentacion')</label></div>
 							<div class="col-md-8">
 								<label class="radio-inline control-label">
-								    <input type="radio" name="tipo_documentacion" class="" value="DNI">@lang('data.dni')
+								    <input v-validate="'required'" type="radio" name="tipo_documentacion" class="" value="DNI" {{ old('tipo_documentacion') == 'DNI'? 'checked' : ''}}>@lang('data.dni')
 								</label>
 								<label class="radio-inline control-label">
-								    <input type="radio" name="tipo_documentacion" class="" value="NIE">@lang('data.nie')
-								</label>													
+								    <input type="radio" name="tipo_documentacion" class="" value="NIE" {{ old('tipo_documentacion') == 'NIE'? 'checked' : ''}}>@lang('data.nie')
+								</label>
+								<p v-if="formErrors.tipo_documentacion" class="text-danger">{{ $errors->first('tipo_documentacion') }}
+				                <p v-else-if="errors.has('tipo_documentacion')" class="text-danger">@{{ errors.first('tipo_documentacion') }}</p>
 							</div>					
 						</div>									
 						<div class="form-group">	

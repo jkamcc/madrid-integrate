@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
+
+use GuzzleHttp\Exception\RequestException;
 
 use App\Student;
-use Illuminate\Validation\Rule;
 
 class StudentsController extends Controller
 {
@@ -29,7 +31,13 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        $countries = $this->getCountriesFromAPI();
+        $countries = [];
+
+        try {
+            $countries = $this->getCountriesFromAPI();
+        } catch (RequestException $e) {
+            Log::error($e->getMessage());        
+        }
         
         return view('students.student', compact('countries'));        
     }
@@ -54,7 +62,9 @@ class StudentsController extends Controller
             'lugar_nacimiento' => 'required|max:35',
             'sexo' => ['required', Rule::in(Student::getValoresSexo())],
             'estado_civil' => ['required', Rule::in(Student::getValoresEstadoCivil())],
-
+            'nivel_instruccion' => 'required|max:255',
+            'ocupacion' => 'required|alpha_spaces|max:35',
+            'tipo_documentacion' => ['required', Rule::in(Student::getTipoDocumentacion())]
         ]);
 
         $fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));

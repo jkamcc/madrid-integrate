@@ -22,7 +22,7 @@ return [
     'viudo'					=> 'Viudo',
     'nacionalidad'			=> 'Nacionalidad',
     'ocupacion'				=> 'Ocupación',
-    'documento'				=> 'Tipo de Documentación',
+    'tipo_documentacion'	=> 'Tipo de Documentación',
     'dni'					=> 'DNI',
     'nie'					=> 'NIE',
     'nivel_instruccion'		=> 'Nivel de Instrucción',

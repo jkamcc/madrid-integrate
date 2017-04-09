@@ -13,10 +13,10 @@ class StudentTest extends DuskTestCase
     public $id = 'A12345678';
 
     /**
-     * A Dusk test example.
+     * Verifica el crear un estudiante correctamente
      * @return void
     */
-    public function testCreateStudent()
+    public function testCrearEstudiante()
     {
 
         $student = factory(Student::class)->make();
@@ -32,33 +32,42 @@ class StudentTest extends DuskTestCase
                     ->type('lugar_nacimiento', $student->lugar_nacimiento)
                     ->select('estado_civil', $student->estado_civil)
                     ->radio('sexo', $student->sexo)
+                    ->select('nacionalidad', 'España') //todo cambiar a random
+                    ->type('nivel_instruccion', $student->nivel_instruccion)
+                    ->type('ocupacion', $student->ocupacion)
+
+                    ->radio('tipo_documentacion', $student->tipo_documentacion) 
+
                     ->press('Guardar')
                     ->assertPathIs('/estudiantes')
                     ->assertDontSee('Whoops, looks like something went wrong.');
         });
     }
 
+    /**
+     * Verificar que son mostrados todos los mensajes de error para los campos requeridos
+     * @return void
+     */
+    public function testValidarMensajesErrorInputs()
+    {
+       echo "\ntestValidarErroresInputs";
+       $inputs = $this->getInputs();
+       $this->browse(function ($browser) use($inputs) {
+          $browser->visit('/estudiantes/nuevo')
+              ->assertSee('Nuevo Estudiante');
 
-//    public function vaalidarMensajesErrorInputs()
-//    {
-//        echo "\ntestValidarErroresInputs";
-//        $inputs = $this->getInputs();
-//        $this->browse(function ($browser) use($inputs) {
-//           $browser->visit('/estudiantes/nuevo')
-//               ->assertSee('Nuevo Estudiante');
-//
-//           foreach ($inputs as $input) {
-//               $browser->clear($input);
-//           }
-//
-//           $browser->press('Guardar');
-//
-//           /* esperando textos de error*/
-//           foreach ($inputs as $input) {
-//               $browser->waitFor('#'.$input.'+.text-danger');
-//           }
-//        });
-//    }
+          foreach ($inputs as $input) {
+              $browser->clear($input);
+          }
+
+          $browser->press('Guardar');
+
+          /* esperando textos de error*/
+          foreach ($inputs as $input) {
+              $browser->waitFor('#'.$input.'+.text-danger');
+          }
+       });
+    }    
 
     private function getInputs() {
         return ['id', 'nombre', 'apellido1', 'apellido2', 'fecha_nacimiento', 'lugar_nacimiento'];
