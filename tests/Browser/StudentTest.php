@@ -20,7 +20,8 @@ class StudentTest extends DuskTestCase
     {
 
         $student = factory(Student::class)->make();
-        print_r('\nstudent:'.$student);
+        echo "\nstudent:".$student."\n";
+
         $this->browse(function ($browser) use ($student) {
             $browser->visit('/estudiantes/nuevo')
                     ->assertSee('Nuevo Estudiante')
@@ -32,11 +33,12 @@ class StudentTest extends DuskTestCase
                     ->type('lugar_nacimiento', $student->lugar_nacimiento)
                     ->select('estado_civil', $student->estado_civil)
                     ->radio('sexo', $student->sexo)
-                    ->select('nacionalidad', 'España') //todo cambiar a random
+                    ->select('nacionalidad', $student->nacionalidad)
                     ->type('nivel_instruccion', $student->nivel_instruccion)
                     ->type('ocupacion', $student->ocupacion)
 
-                    ->radio('tipo_documentacion', $student->tipo_documentacion) 
+                    ->radio('tipo_documentacion', $student->tipo_documentacion)
+                    ->radio('prestacion', $student->prestacion) 
 
                     ->press('Guardar')
                     ->assertPathIs('/estudiantes')
@@ -50,7 +52,6 @@ class StudentTest extends DuskTestCase
      */
     public function testValidarMensajesErrorInputs()
     {
-       echo "\ntestValidarErroresInputs";
        $inputs = $this->getInputs();
        $this->browse(function ($browser) use($inputs) {
           $browser->visit('/estudiantes/nuevo')

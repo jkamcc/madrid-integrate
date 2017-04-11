@@ -30,7 +30,7 @@ class CreateStudentsTable extends Migration
             $table->string('ocupacion', 35);
 
             $table->enum('tipo_documentacion', Student::getTipoDocumentacion());
-            //$table->boolean('prestacion');
+            $table->boolean('prestacion');
             // $table->string('tipo_prestacion');//TODO valores especificios
             // $table->string('tiempo_parado');//TODO valores especificios
 

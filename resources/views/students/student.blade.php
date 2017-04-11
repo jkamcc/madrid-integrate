@@ -157,15 +157,17 @@
 				                <p v-else-if="errors.has('tipo_documentacion')" class="text-danger">@{{ errors.first('tipo_documentacion') }}</p>
 							</div>					
 						</div>									
-						<div class="form-group">	
+						<div class="form-group" :class="{'has-error': errors.has('prestacion')}">	
 							<label class="control-label col-md-4">@lang('data.prestacion')</label>
 							<div class="col-md-8">
 								<label class="radio-inline control-label">
-								    <input type="radio" name="prestacion" class="" value="true">@lang('data.yes')
+								    <input v-validate="'required'" type="radio" name="prestacion" class="" value="1" {{ old('prestacion') == '1'? 'checked' : ''}}>@lang('data.yes')
 								</label>
 								<label class="radio-inline control-label">
-								    <input type="radio" name="prestacion" class="" value="false">@lang('data.no')
-								</label>													
+								    <input type="radio" name="prestacion" class="" value="0" {{ old('prestacion') == '0'? 'checked' : ''}}>@lang('data.no')
+								</label>
+								<p v-if="formErrors.prestacion" class="text-danger">{{ $errors->first('prestacion') }}
+				                <p v-else-if="errors.has('prestacion')" class="text-danger">@{{ errors.first('prestacion') }}</p>													
 							</div>					
 						</div>
 						<div class="form-group">

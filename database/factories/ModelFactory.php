@@ -38,6 +38,8 @@ $factory->define(Student::class, function (\Faker\Generator $faker) {
         'estado_civil' => $faker->randomElement(Student::getValoresEstadoCivil()),
         'nivel_instruccion' => $faker->text(255),
         'ocupacion' => $faker->jobTitle(),
-        'tipo_documentacion' => $faker->randomElement(Student::getTipoDocumentacion())
+        'tipo_documentacion' => $faker->randomElement(Student::getTipoDocumentacion()),
+        'nacionalidad' => $faker->randomElement(Student::getNacionalidades())->name,
+        'prestacion' => (int) $faker->boolean
     ];
 });

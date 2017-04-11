@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
-use GuzzleHttp\Exception\RequestException;
-
 use App\Student;
 
 class StudentsController extends Controller
@@ -31,14 +29,8 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        $countries = [];
+        $countries = Student::getNacionalidades();
 
-        try {
-            $countries = $this->getCountriesFromAPI();
-        } catch (RequestException $e) {
-            Log::error($e->getMessage());        
-        }
-        
         return view('students.student', compact('countries'));        
     }
 
@@ -64,7 +56,8 @@ class StudentsController extends Controller
             'estado_civil' => ['required', Rule::in(Student::getValoresEstadoCivil())],
             'nivel_instruccion' => 'required|max:255',
             'ocupacion' => 'required|alpha_spaces|max:35',
-            'tipo_documentacion' => ['required', Rule::in(Student::getTipoDocumentacion())]
+            'tipo_documentacion' => ['required', Rule::in(Student::getTipoDocumentacion())],
+            'prestacion' => 'required|boolean'
         ]);
 
         $fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));
@@ -120,42 +113,5 @@ class StudentsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    private function getCountriesFromAPI()
-    {
-        $client = new \GuzzleHttp\Client();
-        $res = $client->request('GET', 'https://restcountries.eu/rest/v1/all');                
-
-        $countries = array();
-
-        if ($res->getStatusCode() == 200) {
-            $jsonArray = json_decode($res->getBody(), true);
-
-            foreach ($jsonArray as $jsonObject) {
-                
-                $country = new \stdClass();
-                
-                if (!empty($jsonObject['translations']['es'])) {
-                    $country->name = $jsonObject['translations']['es'];
-                } else {
-                    $country->name = $jsonObject['name'];
-                }
-
-                //obteniendo nombre del país en el locale de la aplicación
-                $locale = \Lang::locale();
-                if (!empty($jsonObject['translations'][$locale])) {
-                    $country ->value = $jsonObject['translations'][$locale];        
-                } else {
-                    $country->value = $jsonObject['name'];
-                }
-
-                array_push($countries, $country); 
-            }
-        } else {
-            throw new Exception('Unreachable REST API');
-        }
-
-        return $countries;
     }
 }
