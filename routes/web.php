@@ -11,15 +11,7 @@
 |
 */
 
-use App\Student;
-
-Route::get('/', function () {
-    return view('index');
-});
-
-// Route::get('/estudiantes', function () {
-//     return view('students.index');
-// });
+Route::get('/', 'HomeController@index');
 
 Route::get('/estudiantes', 'StudentsController@index');
 
@@ -28,3 +20,8 @@ Route::get('/estudiantes/nuevo', 'StudentsController@create');
 Route::get('/estudiantes/{id}', 'StudentsController@show');
 
 Route::post('/estudiantes', 'StudentsController@store');
+
+//Auth::routes();
+Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
+Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
