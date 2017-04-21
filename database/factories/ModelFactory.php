@@ -40,6 +40,9 @@ $factory->define(Student::class, function (\Faker\Generator $faker) {
         'ocupacion' => $faker->jobTitle(),
         'tipo_documentacion' => $faker->randomElement(Student::getTipoDocumentacion()),
         'nacionalidad' => $faker->randomElement(Student::getNacionalidades())->name,
-        'prestacion' => (int) $faker->boolean
+        'prestacion' => (int) $faker->boolean,
+        'tipo_prestacion' => $faker->text(255),
+        'tiempo_parado' => $faker->monthName,
+        'empadronamiento' => (int) $faker->boolean
     ];
 });

@@ -63,11 +63,15 @@ class StudentsController extends Controller
             'fecha_nacimiento' => 'required|date',
             'lugar_nacimiento' => 'required|max:35',
             'sexo' => ['required', Rule::in(Student::getValoresSexo())],
-            'estado_civil' => ['required', Rule::in(Student::getValoresEstadoCivil())],
+            'nacionalidad'  => 'required',
+            'estado_civil'  => ['required', Rule::in(Student::getValoresEstadoCivil())],
             'nivel_instruccion' => 'required|max:255',
             'ocupacion' => 'required|alpha_spaces|max:35',
             'tipo_documentacion' => ['required', Rule::in(Student::getTipoDocumentacion())],
-            'prestacion' => 'required|boolean'
+            'prestacion'    => 'required|boolean',
+            'tipo_prestacion' => 'sometimes|required',
+            'tiempo_parado' => 'required|alpha_spaces|max:35',
+            'empadronamiento' => 'required|boolean'
         ]);
 
         $fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));

@@ -12,8 +12,8 @@
     <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right">
-        @if (Auth::guest())
-            <li><a href="{{ route('login') }}">Ingresar</a></li>
+        @if (Auth::guest() && (Route::is('login')))
+            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in fa-fw"></i>Ingresar</a></li>
         @else
             <!-- /.dropdown -->
             <li class="dropdown">

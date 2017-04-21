@@ -3,6 +3,8 @@
 namespace Tests\Browser;
 
 use App\Student;
+use App\User;
+
 use Tests\DuskTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -13,17 +15,32 @@ class StudentTest extends DuskTestCase
     public $id = 'A12345678';
 
     /**
+     * Ejecutar los seed para tener los usuarios
+     */
+    protected function setUp() 
+    {
+      parent::setUp();
+      
+      if (User::count() == 0)
+      {
+        $this->artisan('db:seed');  
+      }  
+    
+    }
+
+    /**
      * Verifica el crear un estudiante correctamente
      * @return void
     */
-    public function testCrearEstudiante()
+    public function testCrearEstudianteTodosRequeridos()
     {
-
+        //$this->call(UsersTableSeeder::class);
         $student = factory(Student::class)->make();
         echo "\nstudent:".$student."\n";
 
         $this->browse(function ($browser) use ($student) {
-            $browser->visit('/estudiantes/nuevo')
+            $browser->loginAs(User::find(1))
+                    ->visit('/estudiantes/nuevo')
                     ->assertSee('Nuevo Estudiante')
                     ->type('id', 'A12345678')
                     ->type('nombre', $student->nombre)
@@ -38,7 +55,11 @@ class StudentTest extends DuskTestCase
                     ->type('ocupacion', $student->ocupacion)
 
                     ->radio('tipo_documentacion', $student->tipo_documentacion)
-                    ->radio('prestacion', $student->prestacion) 
+                    ->radio('prestacion', 1)
+                    ->type('tipo_prestacion', $student->tipo_prestacion) 
+                    ->type('tiempo_parado', $student->tiempo_parado)
+
+                    ->radio('empadronamiento', 1)
 
                     ->press('Guardar')
                     ->assertPathIs('/estudiantes')
@@ -50,7 +71,7 @@ class StudentTest extends DuskTestCase
      * Verificar que son mostrados todos los mensajes de error para los campos requeridos
      * @return void
      */
-    public function testValidarMensajesErrorInputs()
+    public function validarMensajesErrorInputs()
     {
        $inputs = $this->getInputs();
        $this->browse(function ($browser) use($inputs) {

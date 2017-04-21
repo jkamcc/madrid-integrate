@@ -25,16 +25,16 @@ class CreateStudentsTable extends Migration
             $table->enum('sexo', Student::getValoresSexo());
             $table->enum('estado_civil',
                  Student::getValoresEstadoCivil());
-            // $table->string('nacionalidad');
+            $table->string('nacionalidad');
             $table->string('nivel_instruccion');
             $table->string('ocupacion', 35);
 
             $table->enum('tipo_documentacion', Student::getTipoDocumentacion());
             $table->boolean('prestacion');
-            // $table->string('tipo_prestacion');//TODO valores especificios
-            // $table->string('tiempo_parado');//TODO valores especificios
+            $table->string('tipo_prestacion')->nullable();
+            $table->string('tiempo_parado', 35);
 
-            // $table->boolean('empadronamiento');
+            $table->boolean('empadronamiento');
             // $table->string('lugar_empadronamiento');
             // $table->string('tiempo_empadronamiento');   
 
