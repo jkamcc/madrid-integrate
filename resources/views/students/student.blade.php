@@ -142,6 +142,14 @@
 				                <p v-else-if="errors.has('ocupacion')" class="text-danger">@{{ errors.first('ocupacion') }}</p>
 				            </div>
 				        </div>
+				        <div class="form-group" :class="{'has-error': errors.has('telefono')}">
+				            <label class="control-label col-md-4" for="telefono">@lang('data.telefono'):</label>
+				            <div class="col-md-8">
+				                <input v-validate="'required|digits:9'" type="text" name="telefono" class="form-control" id="telefono" maxlength="9" value="{{ old('telefono') }}">
+				                <p v-if="formErrors.telefono" class="text-danger">{{ $errors->first('telefono') }}
+				                <p v-else-if="errors.has('telefono')" class="text-danger">@{{ errors.first('telefono') }}</p>
+				            </div>
+				        </div>
 			        </div>
 	  			</div>
 			</div>

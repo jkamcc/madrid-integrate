@@ -13,7 +13,7 @@ class Student extends Model
 
     protected static $tipoDocumentacion = ['DNI', 'NIE'];
 
-    protected $fillable = ['id', 'nombre', 'apellido1', 'apellido2', 'fecha_nacimiento', 'lugar_nacimiento',
+    protected $fillable = ['id', 'nombre', 'apellido1', 'apellido2', 'fecha_nacimiento', 'lugar_nacimiento', 'telefono', 
         'nacionalidad', 'sexo', 'nivel_instruccion', 'ocupacion', 'tipo_documentacion', 'prestacion', 'tipo_prestacion', 'tiempo_parado', 'empadronamiento'];
 
     protected $guarded = [];

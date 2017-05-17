@@ -11,6 +11,7 @@ return [
 	'apellido2'             => 'Segundo Apellido',
 	'fecha_nacimiento'		=> 'Fecha de Nacimiento',
 	'lugar_nacimiento'		=> 'Lugar de Nacimiento',
+    'telefono'              => 'Teléfono',
     'sexo'					=> 'Sexo',
     'masculino'				=> 'Masculino',
     'femenino'				=> 'Femenino',

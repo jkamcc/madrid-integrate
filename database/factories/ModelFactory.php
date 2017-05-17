@@ -34,6 +34,7 @@ $factory->define(Student::class, function (\Faker\Generator $faker) {
         'apellido2' => $faker->lastName,
         'fecha_nacimiento' => $faker->date($format='d/m/Y'),
         'lugar_nacimiento' => $faker->city,
+        'telefono' => $faker->randomNumber(9, true),
         'sexo' => $faker->randomElement(Student::getValoresSexo()),
         'estado_civil' => $faker->randomElement(Student::getValoresEstadoCivil()),
         'nivel_instruccion' => $faker->text(255),

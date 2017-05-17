@@ -53,6 +53,7 @@ class StudentTest extends DuskTestCase
                     ->select('nacionalidad', $student->nacionalidad)
                     ->type('nivel_instruccion', $student->nivel_instruccion)
                     ->type('ocupacion', $student->ocupacion)
+                    ->type('telefono', $student->telefono)
 
                     ->radio('tipo_documentacion', $student->tipo_documentacion)
                     ->radio('prestacion', 1)

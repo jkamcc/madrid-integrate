@@ -22,6 +22,7 @@ class CreateStudentsTable extends Migration
             $table->string('apellido2', 18);            
             $table->date('fecha_nacimiento');
             $table->string('lugar_nacimiento', 35);
+            $table->string('telefono', 9);
             $table->enum('sexo', Student::getValoresSexo());
             $table->enum('estado_civil',
                  Student::getValoresEstadoCivil());

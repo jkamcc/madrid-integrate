@@ -62,6 +62,7 @@ class StudentsController extends Controller
             'apellido2'     => 'required|alpha_spaces|max:18',
             'fecha_nacimiento' => 'required|date',
             'lugar_nacimiento' => 'required|max:35',
+            'telefono'      => 'required|digits:9',
             'sexo' => ['required', Rule::in(Student::getValoresSexo())],
             'nacionalidad'  => 'required',
             'estado_civil'  => ['required', Rule::in(Student::getValoresEstadoCivil())],
