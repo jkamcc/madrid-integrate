@@ -70,7 +70,7 @@ class StudentsController extends Controller
             'ocupacion' => 'required|alpha_spaces|max:35',
             'tipo_documentacion' => ['required', Rule::in(Student::getTipoDocumentacion())],
             'prestacion'    => 'required|boolean',
-            'tipo_prestacion' => 'sometimes|required',
+            'tipo_prestacion' => ['sometimes', 'required', Rule::in(Student::getTipoPrestacionValores())],
             'tiempo_parado' => 'required|alpha_spaces|max:35',
             'empadronamiento' => 'required|boolean'
         ]);

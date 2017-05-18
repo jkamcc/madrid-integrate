@@ -57,7 +57,7 @@ class StudentTest extends DuskTestCase
 
                     ->radio('tipo_documentacion', $student->tipo_documentacion)
                     ->radio('prestacion', 1)
-                    ->type('tipo_prestacion', $student->tipo_prestacion) 
+                    ->select('tipo_prestacion', $student->tipo_prestacion) 
                     ->type('tiempo_parado', $student->tiempo_parado)
 
                     ->radio('empadronamiento', 1)

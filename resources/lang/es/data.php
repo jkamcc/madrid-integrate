@@ -39,7 +39,14 @@ return [
     'error_crear_estudiante'=> 'El estudiante no se ha podido crear.',
     'tipo_insercion_laboral'=> 'Detección del Tipo de Inserción Laboral',
     'interes_emprendimiento'=> 'Interés en Emprendimiento',
-    'trabajar_cuenta_ajena_propia' => 'Trabajar en cuenta ajena o propia'
+    'trabajar_cuenta_ajena_propia' => 'Trabajar en cuenta ajena o propia',
+    
+    'pension_no_contributiva'   => 'Pensión no contributiva',
+    'subsidio_desempleo'        => 'Subsidio por desempleo',
+    'pension'                   => 'Pensión',
+    'RMI'                       => 'RMI',
+    'RAI'                       => 'RAI',
+    'prestacion_desempleo'      => 'Prestación por desempleo'
 ];	
 
 ?>

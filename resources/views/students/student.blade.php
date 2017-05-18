@@ -104,10 +104,10 @@
 							<label class="control-label col-md-4">@lang('data.sexo')</label>
 							<div class="col-md-8">
 								<label class="radio-inline control-label">
-								    <input type="radio" v-validate="'required'" name="sexo" value="M" class="" {{ old('sexo') == 'M'? 'checked' : ''}}>@lang('data.masculino')
+								    <input type="radio" v-validate="'required'" name="sexo" value="{{ Student::getValoresSexo()[0]}}" class="" {{ old('sexo') == Student::getValoresSexo()[0]? 'checked' : ''}}>@lang('data.masculino')
 								</label>
 								<label class="radio-inline control-label">
-								    <input type="radio" name="sexo" value="F" class="" {{ old('sexo') == 'F'? 'checked' : ''}}>@lang('data.femenino')
+								    <input type="radio" name="sexo" value="{{ Student::getValoresSexo()[1]}}" class="" {{ old('sexo') == Student::getValoresSexo()[1]? 'checked' : ''}}>@lang('data.femenino')
 								</label>
 								<p v-if="formErrors.sexo" class="text-danger">{{ $errors->first('sexo') }}
 				                <p v-else-if="errors.has('sexo')" class="text-danger">@{{ errors.first('sexo') }}</p>													
@@ -186,7 +186,14 @@
 						<div class="form-group" v-if="prestacion" :class="{'has-error': errors.has('tipo_prestacion')}">
 				            <label class="control-label col-md-4" for="tipo_prestacion">@lang('data.tipo_prestacion'):</label>
 				            <div class="col-md-8">
-				                <input type="text" name="tipo_prestacion" class="form-control" id="tipo_prestacion" v-validate="'required'" value="{{ old('tipo_prestacion') }}">
+				            	<select v-validate="'required'" id="tipo_prestacion" name="tipo_prestacion" class="form-control">
+									<option value="">@lang('data.seleccionar')</option>
+									@foreach (Student::getTipoPrestacion() as $tipo_prestacion_key => $tipo_prestacion_value)
+										<option value="{{$tipo_prestacion_value}}" {{ old('tipo_prestacion') == $tipo_prestacion_value? 'selected' : ''}}>
+											{{ __('data.'.$tipo_prestacion_key) }}
+										</option>
+									@endforeach
+								</select>
 				                <p v-if="formErrors.tipo_prestacion" class="text-danger">{{ $errors->first('tipo_prestacion') }}
 				                <p v-else-if="errors.has('tipo_prestacion')" class="text-danger">@{{ errors.first('tipo_prestacion') }}</p>	
 				            </div>
