@@ -174,10 +174,10 @@
 							<label class="control-label col-md-4">@lang('data.prestacion')</label>
 							<div class="col-md-8">
 								<label class="radio-inline control-label">
-								    <input v-validate="'required'" type="radio" name="prestacion" class="" value="1" {{ old('prestacion') == '1'? 'checked' : ''}} v-model.number="prestacion">@lang('data.yes')
+								    <input v-validate="'required'" type="radio" name="prestacion" class="" value="1"  v-model.number="prestacion">@lang('data.yes')
 								</label>
 								<label class="radio-inline control-label">
-								    <input type="radio" name="prestacion" class="" value="0" {{ old('prestacion') == '0'? 'checked' : ''}} v-model.number="prestacion">@lang('data.no')
+								    <input type="radio" name="prestacion" class="" value="0" v-model.number="prestacion">@lang('data.no')
 								</label>
 								<p v-if="formErrors.prestacion" class="text-danger">{{ $errors->first('prestacion') }}
 				                <p v-else-if="errors.has('prestacion')" class="text-danger">@{{ errors.first('prestacion') }}</p>													
@@ -217,22 +217,22 @@
 							<label class="control-label col-md-4">@lang('data.empadronamiento')</label>
 							<div class="col-md-8">
 								<label class="radio-inline control-label">
-								    <input type="radio" name="empadronamiento" class="" value="1" {{ old('empadronamiento') == '1'? 'checked' : ''}}>@lang('data.yes')
+								    <input v-validate="'required'" type="radio" name="empadronamiento" v-model.number="empadronamiento" class="" value="1">@lang('data.yes')
 								</label>
 								<label class="radio-inline control-label">
-								    <input type="radio" name="empadronamiento" class="" value="0" {{ old('empadronamiento') == '0'? 'checked' : ''}}>@lang('data.no')
+								    <input type="radio" name="empadronamiento" v-model.number="empadronamiento" class="" value="0">@lang('data.no')
 								</label>
 								<p v-if="formErrors.empadronamiento" class="text-danger">{{ $errors->first('empadronamiento') }}
 				                <p v-else-if="errors.has('empadronamiento')" class="text-danger">@{{ errors.first('empadronamiento') }}</p>														
 							</div>					
 						</div>
-						<div class="form-group">
+						<div class="form-group" v-if="empadronamiento">
 				            <label class="control-label col-md-4" for="ID">@lang('data.lugar_empadronamiento'):</label>
 				            <div class="col-md-8">
 				                <input name="lugar_empadronamiento" type="text" class="form-control" id="id">
 				            </div>
 				        </div>
-				        <div class="form-group">
+				        <div class="form-group" v-if="empadronamiento">
 				            <label class="control-label col-md-4" for="ID">@lang('data.tiempo_empadronamiento'):</label>
 				            <div class="col-md-8">
 				                <input name="tiempo_empadronamiento" type="text" class="form-control" id="id">
@@ -300,7 +300,8 @@
 						"{{ $errorKey }}": true ,
 					@endforeach
 	    		},
-	    		'prestacion': false		    		
+	    		'prestacion': {{ old('prestacion') == null ? 'null' : old('prestacion') }},
+	    		'empadronamiento': {{ old('empadronamiento') == null ? 'null' : old('empadronamiento') }}
 	    	}
 
 		});
