@@ -40,7 +40,8 @@ return [
     'tipo_insercion_laboral'=> 'Detección del Tipo de Inserción Laboral',
     'interes_emprendimiento'=> 'Interés en Emprendimiento',
     'trabajar_cuenta_ajena_propia' => 'Trabajar en cuenta ajena o propia',
-    
+    'anos'                  => 'años',
+    'meses'                 => 'meses',
     'pension_no_contributiva'   => 'Pensión no contributiva',
     'subsidio_desempleo'        => 'Subsidio por desempleo',
     'pension'                   => 'Pensión',

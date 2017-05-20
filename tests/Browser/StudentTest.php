@@ -61,6 +61,9 @@ class StudentTest extends DuskTestCase
                     ->type('tiempo_parado', $student->tiempo_parado)
 
                     ->radio('empadronamiento', 1)
+                    ->type('lugar_empadronamiento', $student->lugar_empadronamiento)
+                    ->type('tiempo_empadronamiento_a', 2)
+                    ->type('tiempo_empadronamiento_b', 5)
 
                     ->press('Guardar')
                     ->assertPathIs('/estudiantes')

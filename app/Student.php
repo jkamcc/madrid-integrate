@@ -41,7 +41,9 @@ class Student extends Model
         'prestacion', 
         'tipo_prestacion', 
         'tiempo_parado', 
-        'empadronamiento'
+        'empadronamiento',
+        'lugar_empadronamiento',
+        'tiempo_empadronamiento'
     ];
 
     protected $guarded = [];

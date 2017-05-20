@@ -72,7 +72,9 @@ class StudentsController extends Controller
             'prestacion'    => 'required|boolean',
             'tipo_prestacion' => ['sometimes', 'required', Rule::in(Student::getTipoPrestacionValores())],
             'tiempo_parado' => 'required|alpha_spaces|max:35',
-            'empadronamiento' => 'required|boolean'
+            'empadronamiento' => 'required|boolean',
+            'lugar_empadronamiento' => 'sometimes|required|max:255',
+            'tiempo_empadronamiento' => 'sometimes|required|max:35'
         ]);
 
         $fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));

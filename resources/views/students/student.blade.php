@@ -226,16 +226,26 @@
 				                <p v-else-if="errors.has('empadronamiento')" class="text-danger">@{{ errors.first('empadronamiento') }}</p>														
 							</div>					
 						</div>
-						<div class="form-group" v-if="empadronamiento">
+						<div class="form-group" v-if="empadronamiento" :class="{'has-error': errors.has('lugar_empadronamiento')}">
 				            <label class="control-label col-md-4" for="ID">@lang('data.lugar_empadronamiento'):</label>
 				            <div class="col-md-8">
-				                <input name="lugar_empadronamiento" type="text" class="form-control" id="id">
-				            </div>
+				                <input v-validate="'required'" name="lugar_empadronamiento" type="text" class="form-control" id="lugar_empadronamiento" value="{{ old('lugar_empadronamiento') }}" maxlength="255">
+				                <p v-if="formErrors.lugar_empadronamiento" class="text-danger">{{ $errors->first('lugar_empadronamiento') }}
+				            	<p v-else-if="errors.has('lugar_empadronamiento')" class="text-danger">@{{ errors.first('lugar_empadronamiento') }}</p>		
+				            </div>				        
 				        </div>
-				        <div class="form-group" v-if="empadronamiento">
+				        <div class="form-group" v-if="empadronamiento" :class="{'has-error': errors.has('tiempo_empadronamiento_a')}">
 				            <label class="control-label col-md-4" for="ID">@lang('data.tiempo_empadronamiento'):</label>
-				            <div class="col-md-8">
-				                <input name="tiempo_empadronamiento" type="text" class="form-control" id="id">
+				            <div class="col-md-8">				                
+				                <input class="col-md-3" v-validate="'required|min_value:0'" name="tiempo_empadronamiento_a" type="number" class="form-control" id="tiempo_empadronamiento_a" v-model.number="tiempo_empadronamiento_a" min="0">
+				                <label class="col-md-3" for="tiempo_empadronamiento_a">@lang('data.anos')</label>
+				                 <input class="col-md-3" v-validate="'required|between:0,12'" name="tiempo_empadronamiento_b" v-model.number="tiempo_empadronamiento_b" type="number" class="form-control" id="tiempo_empadronamiento_b" min="0" max="12">
+				                <label class="col-md-3" for="tiempo_empadronamiento_b">@lang('data.meses')</label>
+				                <input type="hidden" name="tiempo_empadronamiento" :value="tiempo_empadronamiento">
+				                <p v-if="formErrors.tiempo_empadronamiento_a" class="text-danger">{{ $errors->first('tiempo_empadronamiento_a') }}
+				            	<p v-else-if="errors.has('tiempo_empadronamiento_a')" class="text-danger">@{{ errors.first('tiempo_empadronamiento_a') }}</p>
+				            	<p v-if="formErrors.tiempo_empadronamiento_b" class="text-danger">{{ $errors->first('tiempo_empadronamiento_b') }}
+				            	<p v-else-if="errors.has('tiempo_empadronamiento_b')" class="text-danger">@{{ errors.first('tiempo_empadronamiento_b') }}</p>
 				            </div>
 				        </div>
 					</div>
@@ -290,9 +300,23 @@
 		                e.currentTarget.submit();
 		            });
 		    	},
+		    	
 		    	hideError: function(e) {
 					this.formErrors[e.currentTarget.id] = false;
-				}
+				},
+				
+				getTiempo: function(anos, meses) {
+	    			var texto = '';
+	    			if (anos != null && anos > 0) {
+	    				texto += anos;
+	    				anos == 1 ? texto+= ' año ' : texto+= ' años ';
+	    			}
+	    			if (meses != null && meses > 0) {
+	    				texto += meses;
+	    				meses == 1 ? texto+= ' mes' : texto+= ' meses';
+	    			}
+	    			return texto.trim();
+	    		}
 		    },
 	    	data: {		    	
 	    		'formErrors': {
@@ -301,9 +325,15 @@
 					@endforeach
 	    		},
 	    		'prestacion': {{ old('prestacion') == null ? 'null' : old('prestacion') }},
-	    		'empadronamiento': {{ old('empadronamiento') == null ? 'null' : old('empadronamiento') }}
+	    		'empadronamiento': {{ old('empadronamiento') == null ? 'null' : old('empadronamiento') }},
+	    		'tiempo_empadronamiento_a': {{ old('tiempo_empadronamiento_a') == null ? 'null' : old('tiempo_empadronamiento_a') }},
+	    		'tiempo_empadronamiento_b': {{ old('tiempo_empadronamiento_b') == null ? 'null' : old('tiempo_empadronamiento_b') }}
+	    	},
+	    	computed: {
+	    		tiempo_empadronamiento: function() {
+	    			return this.getTiempo(this.tiempo_empadronamiento_a, this.tiempo_empadronamiento_b);
+	    		}		
 	    	}
-
 		});
 	});
 </script>

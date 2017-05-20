@@ -36,8 +36,8 @@ class CreateStudentsTable extends Migration
             $table->string('tiempo_parado', 35);
 
             $table->boolean('empadronamiento');
-            // $table->string('lugar_empadronamiento');
-            // $table->string('tiempo_empadronamiento');   
+            $table->string('lugar_empadronamiento')->nullable();
+            $table->string('tiempo_empadronamiento', 35)->nullable();   
 
             $table->timestamps(); 
         });
