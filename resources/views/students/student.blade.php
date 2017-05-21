@@ -197,15 +197,7 @@
 				                <p v-if="formErrors.tipo_prestacion" class="text-danger">{{ $errors->first('tipo_prestacion') }}
 				                <p v-else-if="errors.has('tipo_prestacion')" class="text-danger">@{{ errors.first('tipo_prestacion') }}</p>	
 				            </div>
-				        </div>
-				        <div class="form-group" :class="{'has-error': errors.has('tiempo_parado')}">
-				            <label class="control-label col-md-4" for="tiempo_parado">@lang('data.tiempo_parado'):</label>
-				            <div class="col-md-8">
-				                <input type="text" v-validate="'required|alpha_spaces|max:35'" name="tiempo_parado" class="form-control" id="tiempo_parado" value="{{ old('tiempo_parado') }}" maxlength="35">
-				                <p v-if="formErrors.tiempo_parado" class="text-danger">{{ $errors->first('tiempo_parado') }}
-				                <p v-else-if="errors.has('tiempo_parado')" class="text-danger">@{{ errors.first('tiempo_parado') }}</p>	
-				            </div>
-				        </div>							
+				        </div>					
 					</div>					
 				</div>
 			</div>
@@ -233,48 +225,100 @@
 				                <p v-if="formErrors.lugar_empadronamiento" class="text-danger">{{ $errors->first('lugar_empadronamiento') }}
 				            	<p v-else-if="errors.has('lugar_empadronamiento')" class="text-danger">@{{ errors.first('lugar_empadronamiento') }}</p>		
 				            </div>				        
-				        </div>
-				        <div class="form-group" v-if="empadronamiento" :class="{'has-error': errors.has('tiempo_empadronamiento_a')}">
+				        </div>				      
+				        <div class="form-group" v-if="empadronamiento" :class="{'has-error': errors.has('tiempo_empadronamiento_anos') || errors.has('tiempo_empadronamiento_meses')}">
 				            <label class="control-label col-md-4" for="ID">@lang('data.tiempo_empadronamiento'):</label>
 				            <div class="col-md-8">				                
-				                <input class="col-md-3" v-validate="'required|min_value:0'" name="tiempo_empadronamiento_a" type="number" class="form-control" id="tiempo_empadronamiento_a" v-model.number="tiempo_empadronamiento_a" min="0">
-				                <label class="col-md-3" for="tiempo_empadronamiento_a">@lang('data.anos')</label>
-				                 <input class="col-md-3" v-validate="'required|between:0,12'" name="tiempo_empadronamiento_b" v-model.number="tiempo_empadronamiento_b" type="number" class="form-control" id="tiempo_empadronamiento_b" min="0" max="12">
-				                <label class="col-md-3" for="tiempo_empadronamiento_b">@lang('data.meses')</label>
+				                <input class="col-md-3" v-validate="'required|min_value:0'" name="tiempo_empadronamiento_anos" type="number" class="form-control" id="tiempo_empadronamiento_anos" v-model.number="tiempo_empadronamiento_anos" min="0">
+				                <label class="col-md-3" for="tiempo_empadronamiento_anos">@lang('data.anos')</label>
+				                 <input class="col-md-3" v-validate="'required|between:0,12'" name="tiempo_empadronamiento_meses" v-model.number="tiempo_empadronamiento_meses" type="number" class="form-control" id="tiempo_empadronamiento_meses" min="0" max="12">
+				                <label class="col-md-3" for="tiempo_empadronamiento_meses">@lang('data.meses')</label>
 				                <input type="hidden" name="tiempo_empadronamiento" :value="tiempo_empadronamiento">
-				                <p v-if="formErrors.tiempo_empadronamiento_a" class="text-danger">{{ $errors->first('tiempo_empadronamiento_a') }}
-				            	<p v-else-if="errors.has('tiempo_empadronamiento_a')" class="text-danger">@{{ errors.first('tiempo_empadronamiento_a') }}</p>
-				            	<p v-if="formErrors.tiempo_empadronamiento_b" class="text-danger">{{ $errors->first('tiempo_empadronamiento_b') }}
-				            	<p v-else-if="errors.has('tiempo_empadronamiento_b')" class="text-danger">@{{ errors.first('tiempo_empadronamiento_b') }}</p>
+				                <p v-if="formErrors.tiempo_empadronamiento_anos" class="text-danger">{{ $errors->first('tiempo_empadronamiento_anos') }}
+				            	<p v-else-if="errors.has('tiempo_empadronamiento_anos')" class="text-danger">@{{ errors.first('tiempo_empadronamiento_anos') }}</p>
+				            	<p v-if="formErrors.tiempo_empadronamiento_meses" class="text-danger">{{ $errors->first('tiempo_empadronamiento_meses') }}
+				            	<p v-else-if="errors.has('tiempo_empadronamiento_meses')" class="text-danger">@{{ errors.first('tiempo_empadronamiento_meses') }}</p>
 				            </div>
 				        </div>
 					</div>
 				</div>
 			</div>
-			<div class="panel panel-info col-lg-12">
+			<div class="clearfix"></div>
+			<div class="panel panel-info col-lg-5">
 				<div class="panel-heading row">4.&nbsp;@lang('data.tipo_insercion_laboral')</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="form-group">
+						<div class="form-group" :class="{'has-error': errors.has('interes_emprendimiento')}">
 							<label class="control-label col-md-4">@lang('data.interes_emprendimiento')</label>
 							<div class="col-md-8">
 								<label class="radio-inline control-label">
-								    <input type="radio" name="interes_emprendimiento" class="" value="true">@lang('data.yes')
+								    <input type="radio" v-validate="'required'" name="interes_emprendimiento" class="" value="1" {{ old('interes_emprendimiento') == '1'? 'checked' : ''}}>@lang('data.yes')
 								</label>
 								<label class="radio-inline control-label">
-								    <input type="radio" name="interes_emprendimiento" class="" value="false">@lang('data.no')
-								</label>													
+								    <input type="radio" name="interes_emprendimiento" class="" value="0" {{ old('interes_emprendimiento') == '0'? 'checked' : ''}}>@lang('data.no')
+								</label>
+								<p v-if="formErrors.empadronamiento" class="text-danger">{{ $errors->first('empadronamiento') }}
+				                <p v-else-if="errors.has('empadronamiento')" class="text-danger">@{{ errors.first('empadronamiento') }}</p>
 							</div>		
 						</div>
-						<div class="form-group">
-				            <label class="control-label col-md-4" for="trabajar_cuenta_ajena_propia">@lang('data.trabajar_cuenta_ajena_propia'):</label>
+					</div>
+					<div class="row">
+						<div class="form-group" :class="{'has-error': errors.has('tipo_cuenta')}">
+				            <label class="control-label col-md-4" for="tipo_cuenta">@lang('data.trabajar_cuenta_ajena_propia'):</label>
 				            <div class="col-md-8">
-				                <input type="text" name="trabajar_cuenta_ajena_propia" class="form-control" id="trabajar_cuenta_ajena_propia">
+				            	@foreach(Student::getTiposCuenta() as $tipo_cuenta)
+					                <label class="radio-inline control-label">
+									    <input type="radio" v-validate="'required'" name="tipo_cuenta" class="" value="{{$tipo_cuenta}}" {{ old('tipo_cuenta') == $tipo_cuenta? 'checked' : ''}}>{{ __('data.cuenta_'.$tipo_cuenta) }}
+									</label>
+				            	@endforeach
+								<p v-if="formErrors.tipo_cuenta" class="text-danger">{{ $errors->first('tipo_cuenta') }}
+				                <p v-else-if="errors.has('tipo_cuenta')" class="text-danger">@{{ errors.first('trabaja_cuenta') }}</p>
 				            </div>
 				        </div>
 					</div>
 				</div>
-			</div>	        
+			</div>	 
+			<div class="panel panel-info col-lg-6 col-lg-offset-1">
+				<div class="panel-heading row">5.&nbsp;@lang('data.experiencia_laboral')</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group" :class="{'has-error': errors.has('trabajo_desempenado')}">
+							<label class="control-label col-md-4" for="ID">@lang('data.trabajo_desempenado'):</label>
+				            <div class="col-md-8">
+				                <input v-validate="'required|max:35'" name="trabajo_desempenado" type="text" class="form-control" id="trabajo_desempenado" value="{{ old('trabajo_desempenado') }}" maxlength="35">
+				                <p v-if="formErrors.trabajo_desempenado" class="text-danger">{{ $errors->first('trabajo_desempenado') }}
+				            	<p v-else-if="errors.has('trabajo_desempenado')" class="text-danger">@{{ errors.first('trabajo_desempenado') }}</p>		
+				            </div>	
+			            </div>
+					</div>
+					<div class="row">
+						<div class="form-group" :class="{'has-error': errors.has('trabajo_deseado')}">
+							<label class="control-label col-md-4" for="ID">@lang('data.trabajo_deseado'):</label>
+				            <div class="col-md-8">
+				                <input v-validate="'required|max:35'" name="trabajo_deseado" type="text" class="form-control" id="trabajo_deseado" value="{{ old('trabajo_deseado') }}" maxlength="35">
+				                <p v-if="formErrors.trabajo_deseado" class="text-danger">{{ $errors->first('trabajo_deseado') }}
+				            	<p v-else-if="errors.has('trabajo_deseado')" class="text-danger">@{{ errors.first('trabajo_deseado') }}</p>		
+				            </div>	
+			            </div>
+					</div>
+					<div class="row">						
+						<div class="form-group" :class="{'has-error': errors.has('tiempo_parado_anos') || errors.has('tiempo_parado_meses')}">
+				            <label class="control-label col-md-4" for="ID">@lang('data.tiempo_parado'):</label>
+				            <div class="col-md-8">				                
+				                <input class="col-md-3" v-validate="'required|min_value:0'" name="tiempo_parado_anos" type="number" class="form-control" id="tiempo_parado_anos" v-model.number="tiempo_parado_anos" min="0">
+				                <label class="col-md-3" for="tiempo_parado_anos">@lang('data.anos')</label>
+				                 <input class="col-md-3" v-validate="'required|between:0,12'" name="tiempo_parado_meses" v-model.number="tiempo_parado_meses" type="number" class="form-control" id="tiempo_parado_meses" min="0" max="12">
+				                <label class="col-md-3" for="tiempo_parado_meses">@lang('data.meses')</label>
+				                <input type="hidden" name="tiempo_parado" :value="tiempo_parado">
+				                <p v-if="formErrors.tiempo_parado_anos" class="text-danger">{{ $errors->first('tiempo_parado_anos') }}
+				            	<p v-else-if="errors.has('tiempo_parado_anos')" class="text-danger">@{{ errors.first('tiempo_parado_anos') }}</p>
+				            	<p v-if="formErrors.tiempo_parado_meses" class="text-danger">{{ $errors->first('tiempo_parado_meses') }}
+				            	<p v-else-if="errors.has('tiempo_parado_meses')" class="text-danger">@{{ errors.first('tiempo_parado_meses') }}</p>
+				            </div>
+				        </div>
+					</div>
+				</div>
+			</div>       
 	        <div class="form-group">
 	            <div class="col-md-offset-2 col-md-7">
 	                <button type="submit" class="btn btn-primary">Guardar</button>
@@ -292,7 +336,6 @@
 		    methods: {
 		    	validateBeforeSubmit(e) {    		
 		    		this.$validator.validateAll().then(success => {
-		                console.info(e);
 		                if (! success) {
 		                    // handle error
 		                    return;
@@ -324,14 +367,23 @@
 						"{{ $errorKey }}": true ,
 					@endforeach
 	    		},
+
 	    		'prestacion': {{ old('prestacion') == null ? 'null' : old('prestacion') }},
+
 	    		'empadronamiento': {{ old('empadronamiento') == null ? 'null' : old('empadronamiento') }},
-	    		'tiempo_empadronamiento_a': {{ old('tiempo_empadronamiento_a') == null ? 'null' : old('tiempo_empadronamiento_a') }},
-	    		'tiempo_empadronamiento_b': {{ old('tiempo_empadronamiento_b') == null ? 'null' : old('tiempo_empadronamiento_b') }}
+
+	    		'tiempo_empadronamiento_anos': {{ old('tiempo_empadronamiento_anos') == null ? 'null' : old('tiempo_empadronamiento_anos') }},
+	    		'tiempo_empadronamiento_meses': {{ old('tiempo_empadronamiento_meses') == null ? 'null' : old('tiempo_empadronamiento_meses') }},
+	    		
+	    		'tiempo_parado_anos': {{ old('tiempo_parado_anos') == null ? 'null' : old('tiempo_parado_anos') }},
+	    		'tiempo_parado_meses': {{ old('tiempo_parado_meses') == null ? 'null' : old('tiempo_parado_meses') }}
 	    	},
 	    	computed: {
 	    		tiempo_empadronamiento: function() {
-	    			return this.getTiempo(this.tiempo_empadronamiento_a, this.tiempo_empadronamiento_b);
+	    			return this.getTiempo(this.tiempo_empadronamiento_anos, this.tiempo_empadronamiento_meses);
+	    		},
+	    		tiempo_parado: function() {
+	    			return this.getTiempo(this.tiempo_parado_anos, this.tiempo_parado_meses);
 	    		}		
 	    	}
 		});

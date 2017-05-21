@@ -71,10 +71,20 @@ class StudentsController extends Controller
             'tipo_documentacion' => ['required', Rule::in(Student::getTipoDocumentacion())],
             'prestacion'    => 'required|boolean',
             'tipo_prestacion' => ['sometimes', 'required', Rule::in(Student::getTipoPrestacionValores())],
-            'tiempo_parado' => 'required|alpha_spaces|max:35',
             'empadronamiento' => 'required|boolean',
             'lugar_empadronamiento' => 'sometimes|required|max:255',
-            'tiempo_empadronamiento' => 'sometimes|required|max:35'
+            'tiempo_empadronamiento' => 'sometimes|required|max:18',
+            'tiempo_empadronamiento_anos' => 'sometimes|required|min:0',
+            'tiempo_empadronamiento_meses' => 'sometimes|required|between:0,12',
+            'tiempo_parado_anos' => 'required|min:0',
+            'tiempo_parado_meses' => 'required|between:0,12',
+            'interes_emprendimiento' => 'required|boolean',
+            'tipo_cuenta' => ['required', Rule::in(Student::getTiposCuenta())],
+            'trabajo_desempenado' => 'required|max:35',
+            'trabajo_deseado' => 'required|max:35',
+            'tiempo_parado' => 'required|max:18',
+            'tiempo_parado_anos' => 'required|min:0',
+            'tiempo_parado_meses' => 'required|between:0,12'
         ]);
 
         $fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));

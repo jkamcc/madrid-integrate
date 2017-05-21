@@ -38,16 +38,21 @@ return [
     'no'                    => 'No',
     'error_crear_estudiante'=> 'El estudiante no se ha podido crear.',
     'tipo_insercion_laboral'=> 'Detección del Tipo de Inserción Laboral',
-    'interes_emprendimiento'=> 'Interés en Emprendimiento',
-    'trabajar_cuenta_ajena_propia' => 'Trabajar en cuenta ajena o propia',
-    'anos'                  => 'años',
-    'meses'                 => 'meses',
+    'interes_emprendimiento'    => 'Interés en Emprendimiento',
+    'trabajar_cuenta_ajena_propia' => 'Trabajar en cuenta',
+    'anos'                      => 'años',
+    'meses'                     => 'meses',
     'pension_no_contributiva'   => 'Pensión no contributiva',
     'subsidio_desempleo'        => 'Subsidio por desempleo',
     'pension'                   => 'Pensión',
     'RMI'                       => 'RMI',
     'RAI'                       => 'RAI',
-    'prestacion_desempleo'      => 'Prestación por desempleo'
+    'prestacion_desempleo'      => 'Prestación por desempleo',
+    'cuenta_ajena'              => 'ajena',
+    'cuenta_propia'             => 'propia',
+    'experiencia_laboral'       => 'Experiencia Laboral',
+    'trabajo_desempenado'       => 'Trabajo desempeñado',
+    'trabajo_deseado'           => 'Trabajo deseado'
 ];	
 
 ?>

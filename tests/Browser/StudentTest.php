@@ -57,13 +57,20 @@ class StudentTest extends DuskTestCase
 
                     ->radio('tipo_documentacion', $student->tipo_documentacion)
                     ->radio('prestacion', 1)
-                    ->select('tipo_prestacion', $student->tipo_prestacion) 
-                    ->type('tiempo_parado', $student->tiempo_parado)
+                    ->select('tipo_prestacion', $student->tipo_prestacion)
 
                     ->radio('empadronamiento', 1)
                     ->type('lugar_empadronamiento', $student->lugar_empadronamiento)
-                    ->type('tiempo_empadronamiento_a', 2)
-                    ->type('tiempo_empadronamiento_b', 5)
+                    ->type('tiempo_empadronamiento_anos', $student->tiempo_empadronamiento_anos)
+                    ->type('tiempo_empadronamiento_meses', $student->tiempo_empadronamiento_meses)
+
+                    ->radio('interes_emprendimiento', $student->interes_emprendimiento)
+                    ->radio('tipo_cuenta', $student->tipo_cuenta)
+
+                    ->type('trabajo_desempenado', $student->trabajo_desempenado)
+                    ->type('trabajo_deseado', $student->trabajo_deseado)
+                    ->type('tiempo_parado_anos', $student->tiempo_parado_anos)
+                    ->type('tiempo_parado_meses', $student->tiempo_parado_meses)
 
                     ->press('Guardar')
                     ->assertPathIs('/estudiantes')

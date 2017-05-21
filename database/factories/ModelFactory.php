@@ -43,9 +43,16 @@ $factory->define(Student::class, function (\Faker\Generator $faker) {
         'nacionalidad' => $faker->randomElement(Student::getNacionalidades())->name,
         'prestacion' => (int) $faker->boolean,
         'tipo_prestacion' => $faker->randomElement(Student::getTipoPrestacionValores()),
-        'tiempo_parado' => $faker->monthName,
         'empadronamiento' => (int) $faker->boolean,
         'lugar_empadronamiento' => $faker->text(255),
-        'tiempo_empadronamiento' => $faker->text(35)
+        'tiempo_empadronamiento' => $faker->text(35),
+        'tiempo_empadronamiento_anos' => $faker->numberBetween(0, 20),
+        'tiempo_empadronamiento_meses' => $faker->numberBetween(0, 12),
+        'interes_emprendimiento' => (int) $faker->boolean,
+        'tipo_cuenta' => $faker->randomElement(Student::getTiposCuenta()),
+        'trabajo_desempenado' => $faker->text(35),
+        'trabajo_deseado' => $faker->text(35),
+        'tiempo_parado_anos' => $faker->numberBetween(0, 20),
+        'tiempo_parado_meses' => $faker->numberBetween(0, 12)
     ];
 });

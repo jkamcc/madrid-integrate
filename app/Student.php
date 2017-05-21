@@ -23,6 +23,8 @@ class Student extends Model
         'prestacion_desempleo'      => 'Prestación por desempleo'
     ];
 
+    protected static $tipoCuenta = ['ajena', 'propia'];
+
     /* Laravel Configuration */
 
     protected $fillable = [
@@ -43,7 +45,16 @@ class Student extends Model
         'tiempo_parado', 
         'empadronamiento',
         'lugar_empadronamiento',
-        'tiempo_empadronamiento'
+        'tiempo_empadronamiento',
+        'tiempo_empadronamiento_anos',
+        'tiempo_empadronamiento_meses',
+        'interes_emprendimiento',
+        'tipo_cuenta',
+        'trabajo_desempenado',
+        'trabajo_deseado',
+        'tiempo_parado',
+        'tiempo_parado_anos',
+        'tiempo_parado_meses'
     ];
 
     protected $guarded = [];
@@ -90,6 +101,14 @@ class Student extends Model
     public static function getTipoPrestacionValores() 
     {
         return array_values(self::$tipoPrestacion);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTiposCuenta()
+    {
+        return self::$tipoCuenta;
     }
 
     /**

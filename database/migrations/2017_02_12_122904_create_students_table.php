@@ -33,11 +33,22 @@ class CreateStudentsTable extends Migration
             $table->enum('tipo_documentacion', Student::getTipoDocumentacion());
             $table->boolean('prestacion');
             $table->string('tipo_prestacion')->nullable();
-            $table->string('tiempo_parado', 35);
 
             $table->boolean('empadronamiento');
             $table->string('lugar_empadronamiento')->nullable();
-            $table->string('tiempo_empadronamiento', 35)->nullable();   
+            $table->string('tiempo_empadronamiento', 18)->nullable();
+            $table->tinyInteger('tiempo_empadronamiento_anos');
+            $table->tinyInteger('tiempo_empadronamiento_meses');
+
+            $table->boolean('interes_emprendimiento'); 
+            $table->enum('tipo_cuenta', Student::getTiposCuenta());  
+
+            $table->string('trabajo_desempenado', 35);
+            $table->string('trabajo_deseado', 35);
+            $table->string('tiempo_parado', 18);
+            $table->tinyInteger('tiempo_parado_anos');
+            $table->tinyInteger('tiempo_parado_meses');
+
 
             $table->timestamps(); 
         });
