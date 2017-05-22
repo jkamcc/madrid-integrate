@@ -53,6 +53,10 @@ $factory->define(Student::class, function (\Faker\Generator $faker) {
         'trabajo_desempenado' => $faker->text(35),
         'trabajo_deseado' => $faker->text(35),
         'tiempo_parado_anos' => $faker->numberBetween(0, 20),
-        'tiempo_parado_meses' => $faker->numberBetween(0, 12)
+        'tiempo_parado_meses' => $faker->numberBetween(0, 12),
+        'conocimiento_tics' => $faker->randomElement(Student::getConocimientos()),
+        'interes_aprender_tics' => (int) $faker->boolean,
+        'cv_digital' => (int) $faker->boolean,
+        'sabe_disenar_cv' => (int) $faker->boolean
     ];
 });

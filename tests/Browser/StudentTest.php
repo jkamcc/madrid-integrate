@@ -72,6 +72,11 @@ class StudentTest extends DuskTestCase
                     ->type('tiempo_parado_anos', $student->tiempo_parado_anos)
                     ->type('tiempo_parado_meses', $student->tiempo_parado_meses)
 
+                    ->radio('conocimiento_tics', $student->conocimiento_tics)
+                    ->radio('interes_aprender_tics', (String) $student->interes_aprender_tics)
+                    ->radio('cv_digital', (String) $student->cv_digital)
+                    ->radio('sabe_disenar_cv', (String) $student->sabe_disenar_cv)
+
                     ->press('Guardar')
                     ->assertPathIs('/estudiantes')
                     ->assertDontSee('Whoops, looks like something went wrong.');

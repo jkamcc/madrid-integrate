@@ -84,7 +84,11 @@ class StudentsController extends Controller
             'trabajo_deseado' => 'required|max:35',
             'tiempo_parado' => 'required|max:18',
             'tiempo_parado_anos' => 'required|min:0',
-            'tiempo_parado_meses' => 'required|between:0,12'
+            'tiempo_parado_meses' => 'required|between:0,12',
+            'conocimiento_tics' => ['required', Rule::in(Student::getConocimientos())],
+            'interes_aprender_tics' => 'required|boolean',
+            'cv_digital' => 'required|boolean',
+            'sabe_disenar_cv' => 'required|boolean',
         ]);
 
         $fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));

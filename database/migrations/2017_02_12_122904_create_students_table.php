@@ -24,8 +24,7 @@ class CreateStudentsTable extends Migration
             $table->string('lugar_nacimiento', 35);
             $table->string('telefono', 9);
             $table->enum('sexo', Student::getValoresSexo());
-            $table->enum('estado_civil',
-                 Student::getValoresEstadoCivil());
+            $table->enum('estado_civil', Student::getValoresEstadoCivil());
             $table->string('nacionalidad');
             $table->string('nivel_instruccion');
             $table->string('ocupacion', 35);
@@ -37,8 +36,8 @@ class CreateStudentsTable extends Migration
             $table->boolean('empadronamiento');
             $table->string('lugar_empadronamiento')->nullable();
             $table->string('tiempo_empadronamiento', 18)->nullable();
-            $table->tinyInteger('tiempo_empadronamiento_anos');
-            $table->tinyInteger('tiempo_empadronamiento_meses');
+            $table->tinyInteger('tiempo_empadronamiento_anos')->nullable();
+            $table->tinyInteger('tiempo_empadronamiento_meses')->nullable();
 
             $table->boolean('interes_emprendimiento'); 
             $table->enum('tipo_cuenta', Student::getTiposCuenta());  
@@ -49,6 +48,10 @@ class CreateStudentsTable extends Migration
             $table->tinyInteger('tiempo_parado_anos');
             $table->tinyInteger('tiempo_parado_meses');
 
+            $table->enum('conocimiento_tics', Student::getConocimientos());   
+            $table->boolean('interes_aprender_tics'); 
+            $table->boolean('cv_digital'); 
+            $table->boolean('sabe_disenar_cv'); 
 
             $table->timestamps(); 
         });

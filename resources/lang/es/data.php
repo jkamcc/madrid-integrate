@@ -52,7 +52,15 @@ return [
     'cuenta_propia'             => 'propia',
     'experiencia_laboral'       => 'Experiencia Laboral',
     'trabajo_desempenado'       => 'Trabajo desempeñado',
-    'trabajo_deseado'           => 'Trabajo deseado'
+    'trabajo_deseado'           => 'Trabajo deseado',
+    'tic'                       => 'TIC',
+    'conocimiento_tics'         => 'Conocimiento de las TIC',
+    'básico'                    => 'Básico',
+    'medio'                     => 'Medio',
+    'avanzado'                  => 'Avanzado',
+    'interes_aprender_tics'     => 'Interés en aprender de las TIC',
+    'cv_digital'                => 'Tiene CV digital',
+    'sabe_disenar_cv'           => 'Sabe diseñar el CV'
 ];	
 
 ?>

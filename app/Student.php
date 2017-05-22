@@ -25,6 +25,8 @@ class Student extends Model
 
     protected static $tipoCuenta = ['ajena', 'propia'];
 
+    protected static $conocimiento = ['no', 'básico', 'medio', 'avanzado'];
+
     /* Laravel Configuration */
 
     protected $fillable = [
@@ -54,7 +56,11 @@ class Student extends Model
         'trabajo_deseado',
         'tiempo_parado',
         'tiempo_parado_anos',
-        'tiempo_parado_meses'
+        'tiempo_parado_meses',
+        'conocimiento_tics',
+        'interes_aprender_tics',
+        'cv_digital',
+        'sabe_disenar_cv'
     ];
 
     protected $guarded = [];
@@ -110,6 +116,14 @@ class Student extends Model
     {
         return self::$tipoCuenta;
     }
+
+    /**
+     * @return array
+     */
+    public static function getConocimientos()
+    {
+        return self::$conocimiento;
+    }    
 
     /**
      * Llama a una API externa para mostrar las nacionalidades existentes

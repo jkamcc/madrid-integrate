@@ -316,9 +316,74 @@
 				            	<p v-else-if="errors.has('tiempo_parado_meses')" class="text-danger">@{{ errors.first('tiempo_parado_meses') }}</p>
 				            </div>
 				        </div>
+					</div>					
+				</div>
+			</div>    
+			<div class="clearfix"></div>
+			<div class="panel panel-info col-lg-5">
+				<div class="panel-heading row">6.&nbsp;@lang('data.tic')</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group" :class="{'has-error': errors.has('conocimiento_tics')}">	
+							<label class="control-label col-md-4">@lang('data.conocimiento_tics')</label>
+							<div class="col-md-8">
+								@foreach(Student::getConocimientos() as $conocimiento)
+									<label class="radio-inline control-label">
+								    <input type="radio" v-validate="'required'" name="conocimiento_tics" value="{{$conocimiento}}" class="" {{ old('conocimiento_tics') == $conocimiento ? 'checked' : ''}}>{{ __('data.'.$conocimiento) }}
+								</label>	
+								@endforeach
+								<p v-if="formErrors.conocimiento_tics" class="text-danger">{{ $errors->first('conocimiento_tics') }}
+				                <p v-else-if="errors.has('conocimiento_tics')" class="text-danger">@{{ errors.first('conocimiento_tics') }}</p>												
+							</div>					
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group" :class="{'has-error': errors.has('interes_aprender_tics')}">	
+							<label class="control-label col-md-4">@lang('data.interes_aprender_tics')</label>
+							<div class="col-md-8">
+								<label class="radio-inline control-label">
+								    <input v-validate="'required'" type="radio" name="interes_aprender_tics" class="" value="1" {{ old('interes_aprender_tics') == "1"? 'checked' : ''}}>@lang('data.yes')
+								</label>
+								<label class="radio-inline control-label">
+								    <input type="radio" name="interes_aprender_tics" class="" value="0" {{ old('interes_aprender_tics') == "0"? 'checked' : ''}}>@lang('data.no')
+								</label>
+								<p v-if="formErrors.interes_aprender_tics" class="text-danger">{{ $errors->first('interes_aprender_tics') }}
+				                <p v-else-if="errors.has('interes_aprender_tics')" class="text-danger">@{{ errors.first('interes_aprender_tics') }}</p>	
+							</div>					
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group" :class="{'has-error': errors.has('cv_digital')}">	
+							<label class="control-label col-md-4">@lang('data.cv_digital')</label>
+							<div class="col-md-8">
+								<label class="radio-inline control-label">
+								    <input v-validate="'required'" type="radio" name="cv_digital" class="" value="1" {{ old('cv_digital') == "1"? 'checked' : ''}}>@lang('data.yes')
+								</label>
+								<label class="radio-inline control-label">
+								    <input type="radio" name="cv_digital" class="" value="0" {{ old('cv_digital') == "0"? 'checked' : ''}}>@lang('data.no')
+								</label>
+								<p v-if="formErrors.cv_digital" class="text-danger">{{ $errors->first('cv_digital') }}
+				                <p v-else-if="errors.has('cv_digital')" class="text-danger">@{{ errors.first('cv_digital') }}</p>	
+							</div>					
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group" :class="{'has-error': errors.has('sabe_disenar_cv')}">	
+							<label class="control-label col-md-4">@lang('data.sabe_disenar_cv')</label>
+							<div class="col-md-8">
+								<label class="radio-inline control-label">
+								    <input v-validate="'required'" type="radio" name="sabe_disenar_cv" class="" value="1" {{ old('sabe_disenar_cv') == "1"? 'checked' : ''}}>@lang('data.yes')
+								</label>
+								<label class="radio-inline control-label">
+								    <input type="radio" name="sabe_disenar_cv" class="" value="0" {{ old('sabe_disenar_cv') == "0"? 'checked' : ''}}>@lang('data.no')
+								</label>
+								<p v-if="formErrors.sabe_disenar_cv" class="text-danger">{{ $errors->first('sabe_disenar_cv') }}
+				                <p v-else-if="errors.has('sabe_disenar_cv')" class="text-danger">@{{ errors.first('sabe_disenar_cv') }}</p>	
+							</div>					
+						</div>
 					</div>
 				</div>
-			</div>       
+			</div>   
 	        <div class="form-group">
 	            <div class="col-md-offset-2 col-md-7">
 	                <button type="submit" class="btn btn-primary">Guardar</button>
