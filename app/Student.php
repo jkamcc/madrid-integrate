@@ -12,7 +12,7 @@ class Student extends Model
 
     protected static $valoresEstadoCivil = ['soltero','casado','separado','divorciado','viudo'];
 
-    protected static $tipoDocumentacion = ['DNI', 'NIE'];
+    protected static $tipoDocumentacion = ['DNI', 'NIE', 'pasaporte'];
 
     protected static $tipoPrestacion = [
         'pension_no_contributiva'   => 'Pensión no contributiva',
@@ -26,6 +26,8 @@ class Student extends Model
     protected static $tipoCuenta = ['ajena', 'propia'];
 
     protected static $conocimiento = ['no', 'básico', 'medio', 'avanzado'];
+
+    protected static $regimen_vivienda = ['alquiler', 'propia'];
 
     /* Laravel Configuration */
 
@@ -60,7 +62,8 @@ class Student extends Model
         'conocimiento_tics',
         'interes_aprender_tics',
         'cv_digital',
-        'sabe_disenar_cv'
+        'sabe_disenar_cv',
+        'regimen_vivienda'
     ];
 
     protected $guarded = [];
@@ -123,7 +126,15 @@ class Student extends Model
     public static function getConocimientos()
     {
         return self::$conocimiento;
-    }    
+    }
+
+    /**
+     * @return array
+     */
+    public static function getRegimenesVivienda()
+    {
+        return self::$regimen_vivienda;
+    }
 
     /**
      * Llama a una API externa para mostrar las nacionalidades existentes

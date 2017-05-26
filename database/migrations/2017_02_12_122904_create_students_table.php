@@ -53,6 +53,8 @@ class CreateStudentsTable extends Migration
             $table->boolean('cv_digital'); 
             $table->boolean('sabe_disenar_cv'); 
 
+            $table->enum('regimen_vivienda', Student::getRegimenesVivienda());
+
             $table->timestamps(); 
         });
     }

@@ -160,12 +160,12 @@
 						<div class="form-group" :class="{'has-error': errors.has('tipo_documentacion')}">	
 							<div class="col-md-4"><label class="control-label">@lang('data.tipo_documentacion')</label></div>
 							<div class="col-md-8">
-								<label class="radio-inline control-label">
-								    <input v-validate="'required'" type="radio" name="tipo_documentacion" class="" value="DNI" {{ old('tipo_documentacion') == 'DNI'? 'checked' : ''}}>@lang('data.dni')
-								</label>
-								<label class="radio-inline control-label">
-								    <input type="radio" name="tipo_documentacion" class="" value="NIE" {{ old('tipo_documentacion') == 'NIE'? 'checked' : ''}}>@lang('data.nie')
-								</label>
+								@foreach(Student::getTipoDocumentacion() as $tipo_documentacion)
+									<label class="radio-inline control-label">
+									    <input v-validate="'required'" type="radio" name="tipo_documentacion" class="" value="{{$tipo_documentacion}}" {{ old('tipo_documentacion') == $tipo_documentacion? 'checked' : ''}}>
+									    {{ __('data.'.$tipo_documentacion) }}
+									</label>
+								@endforeach
 								<p v-if="formErrors.tipo_documentacion" class="text-danger">{{ $errors->first('tipo_documentacion') }}
 				                <p v-else-if="errors.has('tipo_documentacion')" class="text-danger">@{{ errors.first('tipo_documentacion') }}</p>
 							</div>					
@@ -383,12 +383,34 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="panel panel-info col-lg-6 col-lg-offset-1">
+				<div class="panel-heading row">7.&nbsp;@lang('data.ubicacion_nucleo_conv')</div>
+				<div class="panel-body">
+					<div class="row">
+						 <div class="form-group" :class="{'has-error': errors.has('regimen_vivienda')}">
+				            <label class="control-label col-md-4" for="regimen_vivienda">@lang('data.regimen_vivienda'):</label>
+				            <div class="col-md-8">
+				                 <select v-validate="'required'" name="regimen_vivienda" class="form-control">
+									<option value="" selected>@lang('data.seleccionar')</option>
+									@foreach (Student::getRegimenesVivienda() as $regimen_vivienda)
+										<option {{ old('regimen_vivienda') == $regimen_vivienda? 'selected' : ''}} value="{{ $regimen_vivienda }}">{{ __('data.'.$regimen_vivienda) }}</option>
+									@endforeach
+								</select>
+				                <p v-if="formErrors.regimen_vivienda" class="text-danger">{{ $errors->first('regimen_vivienda') }}
+				                <p v-else-if="errors.has('regimen_vivienda')" class="text-danger">@{{ errors.first('regimen_vivienda') }}</p>
+				            </div>
+				        </div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col-md-offset-2"></div>
+				<button type="submit" class="btn btn-primary col-md-3">@lang('data.guardar')</button>
+				<div class="col-md-offset-2"></div>
+	            <button type="submit" class="btn col-md-3 col-md-offset-1">@lang('data.cancelar')</button>
 			</div>   
-	        <div class="form-group">
-	            <div class="col-md-offset-2 col-md-7">
-	                <button type="submit" class="btn btn-primary">Guardar</button>
-	            </div>
-	        </div>
 	    </form>
 	</div>	
 @endsection

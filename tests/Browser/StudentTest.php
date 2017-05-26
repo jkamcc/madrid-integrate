@@ -77,6 +77,8 @@ class StudentTest extends DuskTestCase
                     ->radio('cv_digital', (String) $student->cv_digital)
                     ->radio('sabe_disenar_cv', (String) $student->sabe_disenar_cv)
 
+                    ->select('regimen_vivienda', $student->regimen_vivienda)
+
                     ->press('Guardar')
                     ->assertPathIs('/estudiantes')
                     ->assertDontSee('Whoops, looks like something went wrong.');

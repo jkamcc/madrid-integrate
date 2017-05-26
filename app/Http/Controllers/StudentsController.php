@@ -89,6 +89,7 @@ class StudentsController extends Controller
             'interes_aprender_tics' => 'required|boolean',
             'cv_digital' => 'required|boolean',
             'sabe_disenar_cv' => 'required|boolean',
+            'regimen_vivienda' => ['required', Rule::in(Student::getRegimenesVivienda())],
         ]);
 
         $fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));

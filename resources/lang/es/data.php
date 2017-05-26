@@ -5,7 +5,7 @@ return [
 	'user_id_data'			=> 'Datos Identificativos del Usuario',
     'datos_prestaciones'    => 'Datos de Prestaciones',
     'datos_empadronamiento' => 'Datos de Empadronamiento',
-	'ID'					=> 'NIF / NIE',
+	'ID'					=> 'Identificación',
 	'nombre'             	=> 'Nombre',
 	'apellido1'             => 'Primer Apellido',
 	'apellido2'             => 'Segundo Apellido',
@@ -24,8 +24,9 @@ return [
     'nacionalidad'			=> 'Nacionalidad',
     'ocupacion'				=> 'Ocupación',
     'tipo_documentacion'	=> 'Tipo de Documentación',
-    'dni'					=> 'DNI',
-    'nie'					=> 'NIE',
+    'DNI'					=> 'DNI',
+    'NIE'					=> 'NIE',
+    'pasaporte'             => 'Pasaporte',
     'nivel_instruccion'		=> 'Nivel de Instrucción',
     'prestacion'			=> 'Prestación',
     'tipo_prestacion'		=> 'Tipo de Prestación',
@@ -48,8 +49,8 @@ return [
     'RMI'                       => 'RMI',
     'RAI'                       => 'RAI',
     'prestacion_desempleo'      => 'Prestación por desempleo',
-    'cuenta_ajena'              => 'ajena',
-    'cuenta_propia'             => 'propia',
+    'cuenta_ajena'              => 'Ajena',
+    'cuenta_propia'             => 'Propia',
     'experiencia_laboral'       => 'Experiencia Laboral',
     'trabajo_desempenado'       => 'Trabajo desempeñado',
     'trabajo_deseado'           => 'Trabajo deseado',
@@ -60,7 +61,13 @@ return [
     'avanzado'                  => 'Avanzado',
     'interes_aprender_tics'     => 'Interés en aprender de las TIC',
     'cv_digital'                => 'Tiene CV digital',
-    'sabe_disenar_cv'           => 'Sabe diseñar el CV'
+    'sabe_disenar_cv'           => 'Sabe diseñar el CV',
+    'ubicacion_nucleo_conv'     => 'Ubicación del Núcleo de Convivencia',
+    'regimen_vivienda'          => 'Regimen de Vivienda',
+    'alquiler'                  => 'Alquiler',
+    'propia'                    => 'Propia',
+    'guardar'                   => 'Guardar',
+    'cancelar'                  => 'Cancelar'
 ];	
 
 ?>

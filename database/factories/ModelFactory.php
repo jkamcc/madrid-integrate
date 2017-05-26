@@ -57,6 +57,7 @@ $factory->define(Student::class, function (\Faker\Generator $faker) {
         'conocimiento_tics' => $faker->randomElement(Student::getConocimientos()),
         'interes_aprender_tics' => (int) $faker->boolean,
         'cv_digital' => (int) $faker->boolean,
-        'sabe_disenar_cv' => (int) $faker->boolean
+        'sabe_disenar_cv' => (int) $faker->boolean,
+        'regimen_vivienda' => $faker->randomElement(Student::getRegimenesVivienda())
     ];
 });
