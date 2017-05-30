@@ -13,13 +13,25 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Administrador',
-            'email' => 'admin@amigosmira.es',
+            'email' => 'soporte.sistemas@amigosmira.es',
             'password' => bcrypt('admin')
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Coordinador',
-            'email' => 'coordinador@amigosmira.es',
+            'name' => 'gestor1',
+            'email' => 'msi1@amigosmira.es',
+            'password' => bcrypt('test')
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'gestor2',
+            'email' => 'msi2@amigosmira.es',
+            'password' => bcrypt('test')
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'gestor3',
+            'email' => 'msi3@amigosmira.es',
             'password' => bcrypt('test')
         ]);
 

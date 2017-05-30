@@ -1,7 +1,9 @@
 <?php
 
 return [
-	'new_student'           => 'Nuevo Estudiante',
+	'estudiantes'           => 'Estudiantes',
+    'nuevo_estudiante'      => 'Nuevo Estudiante',
+    'editar_estudiante'     => 'Editar Estudiante',
 	'user_id_data'			=> 'Datos Identificativos del Usuario',
     'datos_prestaciones'    => 'Datos de Prestaciones',
     'datos_empadronamiento' => 'Datos de Empadronamiento',
@@ -37,8 +39,9 @@ return [
     'seleccionar'			=> 'Seleccionar',
     'yes'                   => 'Si',
     'no'                    => 'No',
-    'error_crear_estudiante'=> 'El estudiante no se ha podido crear.',
-    'tipo_insercion_laboral'=> 'Detección del Tipo de Inserción Laboral',
+    'error_crear_estudiante'    => 'El estudiante no se ha podido crear.',
+    'error_editar_estudiante'   => 'El estudiante no se ha podido modificar.',
+    'tipo_insercion_laboral'    => 'Detección del Tipo de Inserción Laboral',
     'interes_emprendimiento'    => 'Interés en Emprendimiento',
     'trabajar_cuenta_ajena_propia' => 'Trabajar en cuenta',
     'anos'                      => 'años',
@@ -67,7 +70,9 @@ return [
     'alquiler'                  => 'Alquiler',
     'propia'                    => 'Propia',
     'guardar'                   => 'Guardar',
-    'cancelar'                  => 'Cancelar'
+    'cancelar'                  => 'Cancelar',
+    'crear'                     => 'Crear',
+    'editar'                    => 'Editar'
 ];	
 
 ?>

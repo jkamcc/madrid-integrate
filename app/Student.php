@@ -66,9 +66,9 @@ class Student extends Model
         'regimen_vivienda'
     ];
 
-    protected $guarded = [];
+    //protected $guarded = [];
 
-    #$incrementing = false;
+    public $incrementing = false;
     
     /* Getters */
 

@@ -110,7 +110,6 @@ body {
 .btn-outline {
   color: inherit;
   background-color: transparent;
-  -webkit-transition: all .5s;
   transition: all .5s;
 }
 .btn-primary.btn-outline {

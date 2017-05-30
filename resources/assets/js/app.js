@@ -43,7 +43,19 @@ $(document).ready(function() {
 
 	Vue.use(VeeValidate, {locale: lang});
 
-	$('#students-table').DataTable({
+	var dt = $('#students-table').DataTable({
+		"columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "order": [[ 1, 'asc' ]],
 		"language": dataTableLang[lang]
 	});
+
+	dt.on( 'order.dt search.dt', function () {
+        dt.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
 });

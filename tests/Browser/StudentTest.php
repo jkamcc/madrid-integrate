@@ -40,7 +40,7 @@ class StudentTest extends DuskTestCase
 
         $this->browse(function ($browser) use ($student) {
             $browser->loginAs(User::find(1))
-                    ->visit('/estudiantes/nuevo')
+                    ->visit('/estudiantes/crear')
                     ->assertSee('Nuevo Estudiante')
                     ->type('id', 'A12345678')
                     ->type('nombre', $student->nombre)
@@ -93,7 +93,7 @@ class StudentTest extends DuskTestCase
     {
        $inputs = $this->getInputs();
        $this->browse(function ($browser) use($inputs) {
-          $browser->visit('/estudiantes/nuevo')
+          $browser->visit('/estudiantes/crear')
               ->assertSee('Nuevo Estudiante');
 
           foreach ($inputs as $input) {

@@ -15,11 +15,15 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/estudiantes', 'StudentsController@index');
 
-Route::get('/estudiantes/nuevo', 'StudentsController@create');
+Route::get('/estudiantes/crear', 'StudentsController@create');
 
 Route::get('/estudiantes/{id}', 'StudentsController@show');
 
 Route::post('/estudiantes', 'StudentsController@store');
+
+Route::get('/estudiantes/{id}/editar', 'StudentsController@edit');
+
+Route::put('/estudiantes/{id}', 'StudentsController@update');
 
 //Auth::routes();
 Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);

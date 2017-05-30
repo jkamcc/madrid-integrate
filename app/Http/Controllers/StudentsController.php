@@ -27,9 +27,9 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $estudiantes = Student::all();
 
-        return view('students.index', compact('students'));
+        return view('students.index', compact('estudiantes'));
     }
 
     /**
@@ -39,9 +39,10 @@ class StudentsController extends Controller
      */
     public function create()
     {
+        $estudiante = new Student;
         $countries = Student::getNacionalidades();
 
-        return view('students.student', compact('countries'));        
+        return view('students.create', compact('estudiante', 'countries'));        
     }
 
     /**
@@ -55,8 +56,83 @@ class StudentsController extends Controller
 
         Log::info(request()->all());
 
-        $this->validate($request, [
-            'id'            => 'required|alpha_num|size:9|unique:students',
+        $this->validate($request, $this->getReglasValidacion(null));
+
+        //$fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));
+        $inputs = request()->all();
+        //$inputs['fecha_nacimiento'] = $fecha_nacimiento_formatted;
+
+        /* Store in database */
+        Student::create($inputs);
+
+        return redirect()->action('StudentsController@index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $estudiante = Student::findOrFail($id);
+        $id = $estudiante->id;
+        $countries = Student::getNacionalidades();
+        Log::info("prestacion:".$estudiante->prestacion);
+
+        return view('students.edit', compact('estudiante', 'countries', 'id'));        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, $this->getReglasValidacion($id));
+
+        $fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));
+        $inputs = request()->all();
+        //$inputs['fecha_nacimiento'] = $fecha_nacimiento_formatted;
+
+        $estudiante = Student::find($id)->update($inputs);
+
+        return redirect()->action('StudentsController@index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    /**
+     * @return map
+     */
+    private function getReglasValidacion($id)
+    {
+        $reglas = [
+            'id'            => 'required|alpha_num|size:9|unique:students,id,'.$id,
             'nombre'        => 'required|alpha_spaces|max:35',
             'apellido1'     => 'required|alpha_spaces|max:18',
             'apellido2'     => 'required|alpha_spaces|max:18',
@@ -90,60 +166,8 @@ class StudentsController extends Controller
             'cv_digital' => 'required|boolean',
             'sabe_disenar_cv' => 'required|boolean',
             'regimen_vivienda' => ['required', Rule::in(Student::getRegimenesVivienda())],
-        ]);
+        ];
 
-        $fecha_nacimiento_formatted = date('Y-m-d', strtotime(request('fecha_nacimiento')));
-        $inputs = request()->all();
-        $inputs['fecha_nacimiento'] = $fecha_nacimiento_formatted;
-
-        /* Store in database */
-        Student::create($inputs);
-
-        return redirect()->action('StudentsController@index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $reglas;
     }
 }
