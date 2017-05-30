@@ -12,7 +12,7 @@
 		<div class="col-lg-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Cursos
+					<h4>Actividades y Talleres</h4>
 				</div>
 				<div class="panel-body">
 					<ul class="timeline">
@@ -20,7 +20,24 @@
 							<div class="timeline-badge"><i class="fa fa-check"></i></div>
 							<div class="timeline-panel">
 								<div class="timeline-heading"><h4 class="timeline-heading">Emprendimiento</h4></div>
-								<div class="timeline-body">Durante los meses marzo, abril, mayo los días martes y jueves en horario de 10:00 a 14:00.</div>
+								<div class="timeline-body"><p>Durante los meses de Marzo, Abril y Mayo.</p></div>
+							</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-badge warning">
+								<i class="fa fa-credit-card"></i>
+							</div>
+							<div class="timeline-panel">
+                                <div class="timeline-heading"><h4 class="timeline-title">Búsqueda activa de empleo</h4>
+                                </div>
+                                <div class="timeline-body"><p>Durante los meses de Junio, Julio y Agosto</p></div>
+                            </div>
+						</li>
+						<li>
+							<div class="timeline-badge info"><i class="fa fa-save"></i></div>
+							<div class="timeline-panel">
+								<div class="timeline-heading"><h4 class="timeline-heading">Formación en las TICS</h4></div>
+								<div class="timeline-body"><p>Durante los meses de Septiembre, Octubre y Noviembre.</p></div>
 							</div>
 						</li>
 					</ul>

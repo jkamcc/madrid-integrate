@@ -384,8 +384,6 @@
 </div>
 <div class="clearfix"></div>
 <div class="row">
-	<div class="col-md-offset-2"></div>
-	<button type="submit" class="btn btn-primary col-md-3">@lang('data.guardar')</button>
-	<div class="col-md-offset-2"></div>
-    <button type="submit" class="btn col-md-3 col-md-offset-1">@lang('data.cancelar')</button>
+	<button type="submit" class="btn btn-primary col-md-2 col-md-offset-4">@lang('data.guardar')</button>
+    <a href="/estudiantes" class="btn btn-default col-md-2 col-md-offset-1">@lang('data.cancelar')</a>
 </div>   

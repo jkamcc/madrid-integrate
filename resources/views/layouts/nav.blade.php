@@ -12,9 +12,7 @@
     <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right">
-        @if (Auth::guest() && (Route::is('login')))
-            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in fa-fw"></i>Ingresar</a></li>
-        @else
+        @if (Auth::check())
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -23,9 +21,9 @@
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        <i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión
+                            <i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
@@ -35,6 +33,8 @@
                 <!-- /.dropdown-user -->
             </li>
             <!-- /.dropdown -->
+        @elseif (!Route::is('login'))
+            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in fa-fw"></i>Ingresar</a></li>
         @endif    
     </ul>
     <!-- /.navbar-top-links -->
